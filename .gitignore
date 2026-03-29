@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Build
+.next/
+dist/
+*.egg-info/
+
+# Environment
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Autoresearch backups
+.overnight_backup/
+
+# Large data files (keep CSVs under 10MB)
+data/osm/osm_all_pois.csv
+data/osm/osm_amenity_all.csv
+data/osm/osm_shops.csv
+data/osm/osm_historic_sites.csv
+
+# Temp files
+/tmp/
+*.log

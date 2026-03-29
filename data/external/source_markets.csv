@@ -1,0 +1,13 @@
+country,pct_of_visitors,conflict_exposure,seasonality
+Saudi Arabia,25,low,Eid holidays
+Palestine,15,critical,constant
+Egypt,10,low,summer
+USA,8,advisory-driven,spring/fall
+Germany,6,advisory-driven,spring/fall
+UK,5,advisory-driven,spring/fall
+France,4,advisory-driven,spring/fall
+Italy,3,advisory-driven,spring
+Russia,3,ukraine-war,winter
+India,3,low,winter
+Japan,2,advisory-driven,spring/fall
+Other,16,varies,varies

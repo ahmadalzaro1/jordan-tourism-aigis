@@ -1,0 +1,13 @@
+governorate_code,name,highway_distance_km,has_airport,major_roads,road_density,accessibility_score
+AMM,Amman,0,True,8,high,95
+AQAB,Aqaba,5,True,3,medium,85
+IRB,Irbid,10,False,4,high,75
+ZAR,Zarqa,5,False,3,high,80
+BAL,Dead Sea,15,False,2,low,60
+MAD,Madaba,10,False,2,medium,65
+MAA,Petra (Wadi Musa),20,False,1,low,45
+JER,Jerash,15,False,1,medium,55
+KAR,Karak,30,False,1,low,35
+MAF,Mafraq,10,False,2,low,50
+AJL,Ajloun,20,False,1,low,40
+TAF,Tafilah,40,False,1,low,30

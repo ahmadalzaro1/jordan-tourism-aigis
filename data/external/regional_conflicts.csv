@@ -1,0 +1,22 @@
+date,event,severity,region,impact
+2020-03,COVID-19 lockdown,1.0,global,"Borders closed, all tourism stopped"
+2020-06,COVID-19 partial reopening,0.6,global,Limited domestic tourism only
+2021-03,COVID-19 third wave,0.4,global,Renewed restrictions
+2021-06,COVID-19 recovery,0.2,global,Vaccination enables reopening
+2021-12,Omicron wave,0.3,global,Travel restrictions return
+2022-02,Russia-Ukraine war,0.3,europe,"European tourism drops, fuel costs rise"
+2022-05,COVID restrictions end,0.0,global,Full recovery begins
+2023-10,Hamas attack on Israel,0.9,regional,"Massive cancellations, regional fear"
+2023-11,Gaza bombing intensifies,0.9,regional,Hotel occupancy drops to 15-20%
+2023-12,Gaza war continues,0.8,regional,Petra visits drop 70%
+2024-01,Gaza war ongoing,0.8,regional,International arrivals collapse
+2024-04,Iran-Israel direct strikes,0.7,regional,"Airspace closures, flight cancellations"
+2024-05,Rafah operation,0.7,regional,Regional escalation fears
+2024-09,Israel-Hezbollah escalation,0.8,regional,Lebanon conflict adds to regional instability
+2024-10,Intense Lebanon strikes,0.8,regional,Regional war perception
+2024-11,Lebanon ceasefire,0.4,regional,Cautious recovery begins
+2011-03,Syrian Civil War begins,0.5,regional,"Border instability, refugee influx"
+2014-06,ISIS declares caliphate,0.7,regional,Regional tourism collapses
+2017-10,ISIS territorial defeat,0.3,regional,Gradual recovery begins
+2025-01,Regional stability,0.1,regional,Recovery underway
+2025-06,Stable period,0.1,regional,Tourism recovering

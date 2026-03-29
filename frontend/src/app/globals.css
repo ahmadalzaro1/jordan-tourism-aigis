@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* shadcn/ui dark theme variables (adapted for Jordan Tourism AI-GIS) */
+:root {
+  --background: #000000;
+  --foreground: #f5f5f5;
+  --card: #0a0f1a;
+  --card-foreground: #f5f5f5;
+  --primary: #c9a55c;
+  --primary-foreground: #000000;
+  --secondary: #141b2d;
+  --secondary-foreground: #f5f5f5;
+  --muted: #1e2638;
+  --muted-foreground: #8a8f9e;
+  --accent: #c9a55c;
+  --accent-foreground: #000000;
+  --destructive: #ef4444;
+  --destructive-foreground: #f5f5f5;
+  --border: #1e2638;
+  --input: #1e2638;
+  --ring: #c9a55c;
+  --radius: 0.5rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* MapLibre overrides */
+.maplibregl-canvas {
+  outline: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--card);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* WorldMonitor-inspired HUD glow */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 4px var(--primary); }
+  50% { box-shadow: 0 0 12px var(--primary); }
+}
+
+.hud-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Status indicator animation */
+@keyframes status-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.status-active {
+  animation: status-blink 2s ease-in-out infinite;
+}

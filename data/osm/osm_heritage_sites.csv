@@ -1,0 +1,24 @@
+osm_id,osm_type,name,name_en,name_ar,historic,tourism,ruins,heritage,heritage_operator,description,wikidata,wikipedia,latitude,longitude
+597303024,node,قصر عمرة‎,Quseir Amra,قصر عمرة,castle,attraction,yes,1,whc,,Q499517,en:Qasr Amra,31.8018159,36.5875408
+2055593661,node,بئر بورين,,بئر بورين,yes,,,yes,,,Q767376,ar:بئر بورين,32.4192471,35.0352432
+3734455880,node,Darat al Funun,,,,,,yes,,,,,31.9539913,35.9300244
+32231475,way,מצדה,Masada,مسادا,archaeological_site,,,1,whc,,Q186312,en:Masada,31.3156351,35.3537397
+82908941,way,Umm er Rasas,Umm ar Rasas,أم الرصاص,archaeological_site,attraction,,1,whc,,Q822842,,31.5053944,35.9209854
+243200322,way,محمية وادي رم,Wadi Rum Protected Area,محمية وادي رم,,,,1,whc,,Q40729,ar:وادي رم,29.5111703,35.3957204
+370574999,way,National Insurance Company of Egypt,,الشركة التأمين الاهلية المصرية,,,,heritage,,,,,31.9525363,35.929708
+394787428,way,גן לאומי תל מגידו,Tel Megiddo National Park,مجيدو,archaeological_site,,,1,whc,,Q208379,,32.5854819,35.1840715
+424506592,way,البترا,Petra,البتراء,archaeological_site,attraction,,1,whc,,Q5788,ar:البتراء,30.3512717,35.3690309
+511437529,way,,,,,,,yes,,,,,31.9542288,35.9307074
+511437531,way,,,,,,,yes,,,,,31.9547163,35.9308723
+593207623,way,البلدة القديمة في الخليل,Hebron/Al-Khalil Old Town,البلدة القديمة في الخليل,archaeological_site,,,1,whc,,Q35584069,,31.5237031,35.1091793
+816183673,way,אתר מורשת עולמי העיר העתיקה של עכו,Old City of Acre,,,,,1,whc,,,"en:Acre, Israel",32.9220306,35.0697304
+981642419,way,السلط - مدينة التسامح وأصول الضيافة الحضرية,As-Salt - The Place of Tolerance and Urban Hospitality,السلط - مدينة التسامح وأصول الضيافة الحضرية,city,,,1,whc,,Q867586,en:As-Salt,32.0387086,35.7262436
+981642421,way,موقع المعمودية,Bethany beyond the Jordan Archaeological Park,موقع المعمودية,archaeological_site,attraction,,1,whc,,,,31.8391055,35.5592937
+1175329490,way,Old town of Al-Azraq  (النجع الشرقي) بلدة الأزرق القديمة,,,,,,yes,,,Q124328659,,31.8782343,36.8413559
+1763056,relation,آثار رومانية,Tyre,آثار رومانية,archaeological_site,,,1,whc,,,,33.2697059,35.19505
+5931545,relation,גן לאומי חצור,Hatzor National Park,,,,,1,whc,,Q26769215,,33.0183506,35.5656405
+7880713,relation,העיר העתיקה בירושלים וחומותיה,Old City of Jerusalem and its Walls,مدينة القدس القديمة وأسوارها,heritage,,,1,whc,,Q15726304,,31.7782875,35.2316226
+8017685,relation,Bahá’i Holy Places in Haifa and the Western Galilee,Bahá’i Holy Places in Haifa and the Western Galilee,,,,,1,whc,,,,32.8789124,35.0327975
+8348086,relation,مدينة بصرى القديمة,Ancient City of Bosra,مدينة بصرى القديمة,town,,,1,whc,,Q15727412,,32.5196206,36.4819436
+8348188,relation,Palestine: Land of Olives and Vines,,,,,,1,whc,,,,31.7254314,35.1354044
+8348206,relation,Birthplace of Jesus,Birthplace of Jesus,مهد ولادة يسوع المسيح,,,,1,whc,,,,31.7040401,35.2084371

@@ -1,0 +1,179 @@
+osm_id,osm_type,name,name_en,name_ar,historic,tourism,ruins,heritage,heritage_operator,description,wikidata,wikipedia,latitude,longitude
+93727476,way,مرصد طيور العقبة,Aqaba Bird Observatory,مرصد طيور العقبة,,attraction,,,,,Q31866612,,29.5724935,34.9850742
+154249480,way,محمية الضمنة الحراجية,Al-Dhemna Forest Reserve,,,,,,,,,,32.7275373,36.60329
+219048418,way,גן לאומי הר גריזים,Mount Garizim National Park,منتزه جبل جرزيم الوطني,,,,,,,,,32.2008399,35.2733445
+295183528,way,محمية غابات عجلون,Ajloun Forest Reserve,محمية غابات عجلون,,,,,,,Q3384953,ar:محمية غابات عجلون,32.3803496,35.7561799
+343923850,way,שמורת טבע חולות המפרץ,Holot HaMifratz Nature Reserve,,,,,,,,,,32.891877,35.0841669
+391514976,way,שמורת טבע הר תבור,Har Tavor Nature Reserve,محمية جبل طابور,,,,,,,,,32.6863646,35.3912525
+392358091,way,שמורת טבע הר כמון,Har Kamon Nature Reserve,محمية طبيعية جبل كمون,,,,,,,,,32.9057935,35.3495093
+468978209,way,محمية غابات اليرموك,Yarmouk Forest Reserve,محمية غابات اليرموك,,,,,,,Q12241375,ar:محمية غابات اليرموك,32.6764611,35.7100605
+491891147,way,סלמאן אל-פרסי,Salman al-Farsi,سلمان الفارسي,,,,,,,,,32.1687484,35.2321252
+565964984,way,محمية ضانا الطبيعية,Dana Biosphere Reserve,محمية ضانا الطبيعية,,,,,,,Q864750,ar:محمية ضانا للمحيط الحيوي,30.7251083,35.5154299
+570493519,way,محمية الموجب للمحيط الحيوي,Mujib Biosphere Reserve,محمية الموجب للمحيط الحيوي,,,,,,,Q22678667,ar:محمية الموجب للمحيط الحيوي,31.4996634,35.6252128
+692840454,way,שמורת טבע נחל פרת,Nahal Prat Nature Reserve,نحال پرات,,,,,,,,,31.8464071,35.3481506
+692842112,way,נחל מכוך,Nahal Makuh,,,,,,,,,,31.8908729,35.3707881
+692845224,way,ואדי מלחה,Wadi Malaha,,,,,,,,Q31912239,,32.0085824,35.4840631
+692845235,way,גשר אדם,Adam Bridge,,,,,,,,,,32.1125141,35.5381077
+692845237,way,סרטבה,Sartaba,صرطبا,,,,,,,,,32.0856177,35.4512354
+692848128,way,עינון,Einon,عينون,,,,,,,,,32.3022552,35.3960231
+692848129,way,הר טמון,Mount Tammun,جبل طمّون,,,,,,,,,32.2612527,35.3997005
+692848132,way,אלוני סיריס,Siris' Oaks,محمية سيريس المكسر,,,,,,,,,32.3126893,35.3125867
+692848134,way,הר גדיר,Mount Gadir,جبل جادر,,,,,,,,,32.3142508,35.4115891
+692850421,way,נבי ינון,,نبي يانون,,,,,,,,,32.1433198,35.362011
+692850423,way,נבי איסמעיל,Nabi Isma'il,نبي إسماعيل,,,,,,,,,32.1771585,35.2684979
+692855972,way,אלוני עראבה,,,,,,,,,,,32.4165038,35.1647583
+692856688,way,נבי רבח,Nebi Rabah,نبي رباح,,,,,,,,,32.2022196,35.1255413
+692856689,way,שייח' חבן (כור),Seikh Hoban (Kur),سيخ حبن (كور),,,,,,,,,32.2292566,35.101124
+692856985,way,שמורת נחל קנה,Nahal Kana Nature Reserve,وادي قانا,,,,,,"נחל קנה הנו אחד מיובלי הירקון הגדולים בשומרון , נמצא בשטח C מעבר לקו הירוק, בחורף הנחל זורם ובקיץ נשארים מעט ערוצי מים. בשמורה מדרום לקרני שומרון נובעים מספר מעיינות.",,,32.1547588,35.0980275
+692859324,way,עינות זרקא,Zarqa Springs,عينوت الزرقاء,,,,,,,,,31.9859589,35.0798218
+692859325,way,יער דיר ניד'אם,Deir Nidham Forest,,,,,,,,,,31.9994026,35.1251209
+692859938,way,עין דארה,Ein Dara,عين دارة,,,,,,,,,32.0158827,35.1722527
+692860541,way,السنديان العطارة,Attara Oaks,السنديان العطارة,,,,,,,,,31.9936151,35.1981186
+692861242,way,נביעות,Neviot,,,,,,,,,,31.9715748,35.1043765
+692861243,way,אלוני תפוח,Tappu'ah Oaks,,,,,,,,,,32.1045726,35.2306799
+692861244,way,الشيخ زايد,Sheikh Zayed,الشيخ زايد,,,,,,,,,32.0684416,35.2223999
+692861678,way,אלוני בלעין,Bil'in Oaks,,,,,,,,,,31.9250045,35.0594033
+736297710,way,محمية الطبيق,Al-Tubayq,,,,,,,,Q12241356,,29.7845539,37.3061141
+762613926,way,El Kanub Nature Reserve,El Kanub Nature Reserve,محمية الكانوب الطبيعية,,,,,,,,,31.5713507,35.2197803
+774944326,way,גן לאומי נחל צלמון,Nahal Tzalmon National Park,,,,,,,,,,32.908643,35.3731251
+906117998,way,שמורת טבע נחל שילה עילי,Nahal Shilo 'Illi Nature Reserve,محمية وادي الزرقاء العلوي,,,,,,,,,32.0506508,35.0723995
+906760765,way,בור הציפורים,,,,,,,,,,,32.1770958,35.2261805
+981642427,way,محمية الضاحك الطبيعية,Dahek Nature Reserve,محمية الضاحك الطبيعية,,,,,,,Q108482647,,31.6079038,37.2450253
+981642437,way,محمية الأزرق المائية,Azraq Wetland Reserve,محمية الأزرق,,,,,,,Q11202572,en:Azraq Wetland Reserve,31.8194162,36.8604586
+981642439,way,محمية شومري,Shaumari Wildlife Reserve,محمية شومري,,,,,,,Q4165387,,31.7427244,36.7803732
+1044449981,way,منتزه راحوب,,,,,,,,,,,32.6168282,35.9412564
+1073421633,way,محمية الملك سلمان الملكية,King Salman Bin Abdulaziz Royal Reserve,,,,,,,,Q63122496,,29.4786585,39.0960825
+1334585632,way,Wadi Al Hujair Nature Reserve,Wadi Al Hujair Nature Reserve,,,,,,,,,,33.2768302,35.4477113
+4542254,relation,גן לאומי שימרון,Shimron National Park,متنزه قومي شيمرون,,,,,,,,,32.7065604,35.2266282
+4717620,relation,שמורת טבע מסיב אילת,Massive Eilat Nature Reserve,,,,,,,,Q26766882,,29.7127377,34.8907228
+4726674,relation,שמורת טבע הר הנגב,Negev Mountains Nature Reserve,,,,,,,,Q110826555,,30.4704916,34.7419072
+4728666,relation,שמורת טבע נחל אבוב,Nahal Abuv Nature Reserve,,,,,,,,,,31.2110546,35.2305111
+4729745,relation,שמורת טבע בקעת תמנע,Timna Park,,,,,,,,Q14202614,he:בקעת תמנע,29.7726534,34.9657211
+4729750,relation,שמורת טבע המכתש הגדול,HaMakhtesh HaGadol Nature Reserve,,,,,,,,Q2911410,he:המכתש הגדול,30.9294504,34.9735953
+4731214,relation,שמורת טבע מצלעות המכתש הגדול,Mitzla'ot HaMakhtesh HaGadol Nature Reserve,,,,,,,,,,30.9420947,34.988507
+4731467,relation,שמורת טבע נחל שיזף,Nahal Sheizaf Nature Reserve,محمية نهل شيزاف الطبيعية,,,,,,,,,30.7314107,35.2542699
+4756924,relation,שמורת טבע בוריקה,Borika Nature Reserve,,,,,,,,Q26771073,he:בוריקה,32.544959,34.9808221
+4759745,relation,גן לאומי הר הכרמל,Har HaCarmel National Park,متنزه قومي جبل الكرمل,,,,,,,Q12410485,,32.7050221,35.0368897
+5011462,relation,שמורת טבע הר הכרמל,Mount Carmel Nature Reserve,محمية جبل الكرمل,,,,,,,Q1443478,,32.6957194,35.028424
+5118758,relation,שמורת טבע חרבת קרתא,Hurbat Karta Nature Reserve,,,,,,,,,he:שמורת טבע חורבת קרתא,32.7084816,34.9446992
+5118951,relation,שמורת טבע נחל תות,Nahal Tut Nature Reserve,,,,,,,,,,32.6117578,35.0408618
+5121931,relation,שמורת טבע חרבת דרכמון,Hirbat Drachmon Nature Reserve,,,,,,,חורבת דרכמון,,,32.6168548,34.9304068
+5336354,relation,שמורת טבע הר מירון,Har Meron Nature Reserve,محمية طبيعية جبل الجرمق,,,,,,,Q26764467,,32.9837234,35.4008491
+5836580,relation,שמורת טבע עין אווזים,Ein Avazim Nature Reserve,,,,,,,,,,33.155797,35.5704734
+5836582,relation,שמורת טבע מערת פער,Pa'ar Cave Nature Reserve,,,,,,,,,,33.0316927,35.3860231
+5838317,relation,שמורת טבע התנור,Ayun Stream Nature Reserve,,,,,,,,,,33.272253,35.578322
+5838424,relation,שמורת טבע שמיר - נחל רחום,Shamir - Nahal Rahum Nature Reserve,,,,,,,,,,33.1766744,35.6578138
+5838522,relation,שמורת טבע נחל אוכם,Nahal Ucam Nature Reserve,,,,,,,,Q26764529,,33.0725419,35.3254565
+5838728,relation,שמורת טבע מצפה אלות,Mitzpe Elot Nature Reserve,,,,,,,שמורת מצפה אלות - מצוק מרשים בו נחשפות שכבות גיאולוגיות מגוונות.,Q26764712,,32.6713222,35.5291716
+5838848,relation,שמורת טבע הגלבוע,HaGilboa Nature Reserve,محمية فقوعة,,,,,,,,,32.5177456,35.4046398
+5838870,relation,שמורת טבע נחל דישון,Nahal Dishon Nature Reserve,محمية وادي ديشون,,,,,,,Q117353717,,33.0630099,35.5009851
+5848028,relation,שמורת טבע נחל עינן,Nahal Einan Nature Reserve,,,,,,,,,,33.087589,35.5807688
+5848043,relation,שמורת טבע נחל עמוד,Nahal Amud Nature Reserve,,,,,,,,Q86005777,,32.8988623,35.483951
+5848406,relation,שמורת טבע נחל תבור,Nahal Tavor Nature Reserve,,,,,,,,,,32.6304196,35.5041865
+5856719,relation,שמורת טבע עין אל תינה ואל פג'ר,Ein El Tina and El Fajar Nature Reserve,,,,,,,,,,33.0703998,35.6423248
+5862397,relation,שמורת טבע גאון הירדן,Ge'on HaYarden Nature Reserve,,,,,,,,,,32.5186829,35.5494501
+5863274,relation,שמורת טבע ראש הנקרה,Rosh HaNikra Nature Reserve,,,,,,,,,,33.0898272,35.1526841
+5863309,relation,שמורת טבע ברכות צוריאל,Brechot Zuriel Nature Reserve,,,,,,,,,,33.0047286,35.3040829
+5865698,relation,שמורת טבע יהודיה-גמלא,Yehudiya - Gamla Nature Reserve,,,,,,,,,en:Gamla nature reserve,32.9029308,35.7518522
+5865709,relation,שמורת טבע חוף ראש הנקרה,Hof Rosh HaNikra Nature Reserve,,,,,,,,,,33.0746071,35.1051717
+5865814,relation,שמורת טבע סוסיתא,Susita Nature Reserve,,,,,,,,,,32.758414,35.6541163
+5868277,relation,שמורת טבע גלבוע מזרחי,Eastern Gilboa Nature Reserve,,,,,,,,,,32.4594605,35.4560333
+5868385,relation,שמורת טבע יהודיה - אתר בריכת המשושים,Yehudia - Brechat HaMeshushim Site Nature Reserve,,,,,,,,,he:שמורת יער יהודיה,32.9350214,35.6713397
+5868808,relation,שמורת טבע ברכת סינדינה,Brechat Sindina Nature Reserve,,,,,,,,,,33.0469834,35.7552443
+5868846,relation,שמורת טבע נחל דליה ויובליו,Nahal Dalia and Tributaries Nature Reserve,,,,,,,,,,32.5942635,35.040826
+5881177,relation,שמורת טבע תל-דן,Tel-Dan Nature Reserve,,,,,,,שמורת טבע מקסימה עם 2 מסלולים מסביב למקורות הדן ובריכת שכשוך רדודה. מומלץ לבקר בסוף החורף כשהנחל זורם בעוז. הכניסה בתשלום.,Q6703202,,33.2376401,35.6432892
+5900619,relation,שמורת טבע נחל שורק,Nahal Sorek Nature Reserve,,,,,,,,Q6949231,,31.7526837,35.0577981
+5912741,relation,שמורת טבע נחל כזיב,Nahal Kziv Nature Reserve,محمية وادي كزيف,,,,,,"33.035996,35.235064
+",,,33.0309774,35.2400513
+5917822,relation,גן לאומי בית-שאן,Beit She'an National Park,,,,,,,,Q11811439,he:גן לאומי בית שאן,32.5050776,35.5043429
+5931545,relation,גן לאומי חצור,Hatzor National Park,,,,,1,whc,,Q26769215,,33.0183506,35.5656405
+5959069,relation,אתר לאומי חאן ומצודת דרכים בשער הגיא,Han and Roadside Castel in Sha'ar HaGay National Monument,,,,,,,,,,31.8146384,35.0246571
+5961189,relation,שמורת טבע אחו גונן,Achu Gonen Nature Reserve,,,,,,,,,,33.1319972,35.6457734
+5961193,relation,שמורת טבע עין גונן - ואדי חמדי,Ein Gonen - Wadi Hamadi Nature Reserve,,,,,,,,,,33.1023857,35.6471641
+6076332,relation,שמורת טבע עין גדי,Ein Gedi Nature Reserve,محمية عين جدي الطبيعية,,,,,,,Q1011544,,31.4446624,35.3735516
+6076335,relation,שמורת טבע נחלים גדולים,Nehalim Gdolim Nature Reserve,,,,,,,,Q26766880,,30.139099,34.9691359
+6077311,relation,שמורת טבע הר הטיסים,Har HaTayasim Nature Reserve,,,,,,,,,,31.7773037,35.1026898
+6077592,relation,שמורת טבע אירוס ביצות נוב,Iris Bitzot Nov Nature Reserve,,,,,,,ביצה חורפית בה יש פריחה מרהיבה של נרקיסים ואירוס הביצות - כל אחד בעונתו. בסביהות סוף יוני יש פריחה סגולה מרהיבה של כמויות של חוחן הקנרס,,he:שמורת טבע אירוס הביצות נוב,32.8323537,35.7912753
+6077630,relation,שמורת טבע איי חוף ראש הנקרה,Rosh HaNikra Shore Islands Nature Reserve,,,,,,,,Q6737271,he:שמורת איי חוף ראש הנקרה,33.060024,35.091116
+6484235,relation,שמורת טבע מערת הנטיפים,Stalactites Cave Nature Reserve,,,,,,,,,,31.7557741,35.0227095
+7826270,relation,שמורת טבע נחל יפתחאל,Nahal Yiftachel Nature Reserve,,,,,,,,,,32.7545824,35.2235906
+7826367,relation,שמורת טבע נס הרים,Nes Harim Nature Reserve,,,,,,,,,,31.7335013,35.0529015
+7826393,relation,שמורת טבע נחל דולב,Nahal Dolev Naure Reserve,,,,,,,,,,31.7306988,35.0332318
+7826966,relation,שמורת טבע נחל שניר,Nahal Snir Nature Reserve,,,,,,,"שמורת טבע נחל שניר, מסלולי טיול במים בכל הרמות ומסלול חושי לילדים. במסלול החושי יכול הילד להרגיש כמו החיות המקומיות וללמוד עליהן.",Q18682614,,33.2343128,35.6192693
+7829528,relation,שמורת טבע עין ג'ינדה,Ein Ginda Nature Reserve,,,,,,,,,,32.4069343,35.5511465
+7857787,relation,שמורת טבע יטבתה,Yotvata Nature Reserve,,,,,,,,,,29.8471486,35.0351903
+7880713,relation,העיר העתיקה בירושלים וחומותיה,Old City of Jerusalem and its Walls,مدينة القدس القديمة وأسوارها,heritage,,,1,whc,,Q15726304,,31.7782875,35.2316226
+8348086,relation,مدينة بصرى القديمة,Ancient City of Bosra,مدينة بصرى القديمة,town,,,1,whc,,Q15727412,,32.5196206,36.4819436
+8813797,relation,שמורת טבע מדבר יהודה,Judean Desert Nature Reserve,,,,,,,,,,31.1315448,35.2604534
+9469831,relation,שמורת טבע הדום שומרון,Hadom Shomron Nature Reserve,,,,,,,,Q26770934,,32.0026231,34.9844236
+10704153,relation,גן לאומי עמק האלה,Emek HaEla National Park,,,,,,,,,,31.6938455,34.9732689
+10704168,relation,שמורת טבע נחל חגל,Nahal Hagal Nature Reserve,,,,,,,,,,32.6281321,35.5377877
+10722006,relation,שמורת טבע מצד אבירים,Mezad Abbirim Nature Reserve,,,,,,,,Q26769232,,33.0500294,35.2769672
+10725642,relation,גן לאומי ירקון,Yarkon National Park,,,,,,,,,he:גן לאומי ירקון,32.1145066,34.9191162
+10725658,relation,שמורת טבע ים ראש הנקרה-אכזיב,Yam Ros Haniqra-Akhziv Nature Reserve,,,,,,,,Q108439903,,33.0639471,35.0243551
+10725680,relation,שמורת טבע הר יבנאל,Har Yavne'el Nature Reserve,,,,,,,,,,32.679666,35.5159562
+10731490,relation,שמורת טבע הר אביטל והר בנטל,Mount Avital and Mount Bental Nature Reserve,,,,,,,,Q12411838,he:שמורת הר אביטל,33.1173293,35.786913
+10732764,relation,גן לאומי מגדל אפק,Migdal Tzedek National Park,,,,,,,"An essential green lung in central Israel nature, landscape and heritage. An ancient fortress at the top of the hill, is a great start for walking among rehabilitated quarries alongside lime kilns, revealing wonderful scenic views.",,,32.0763553,34.9585113
+10743844,relation,שמורת טבע נחל תבור,Nahal Tavor (harhava) Nature Reserve,,,,,,,,,,32.6177901,35.4943473
+10747363,relation,שמורת טבע אלות סירין,Alot Sirin Nature Reserve,,,,,,,,,,32.6733301,35.491348
+10747370,relation,גן לאומי עין כרם,En Karem National Park,,,,,,,,,,31.7698427,35.1577932
+10747371,relation,גן לאומי הר שוקף,Har Shoqef National Park,,,,,,,,,,32.7038684,35.0245521
+10750408,relation,גן לאומי ציפורי - ריש לקיש,Zippori (Resh-Laqish) National Park,,,,,,,,Q1132798,,32.7607413,35.256932
+10750421,relation,שמורת טבע הר שכניה,Har Shekhanya Nature Reserve,,,,,,,,,,32.853247,35.2437843
+10753536,relation,שמורת טבע נחל תבור,Nahal Tavor (harhava) Nature Reserve,,,,,,,,,,32.6308107,35.5118612
+11629176,relation,גן לאומי הרי יהודה (נחל רפאים),Hare Yehuda National Park,,,,,,,,,,31.7432515,35.1275377
+11653759,relation,שמורת טבע מי נפתוח (ליפתא),Mei Neftoah Nature Reserve,,,,,,,,,,31.7943237,35.1952876
+12018469,relation,שמורת טבע אלונה,Allona Nature Reserve,,,,,,,,,,32.5686037,35.0041822
+12030880,relation,גן לאומי תל קדש,Tel Kedesh National Park,,,,,,,,,,33.1152076,35.5282788
+12250900,relation,محمية أبو جالوم,Abu Galum Protectorate,محمية أبو جالوم,,,,,,,,,29.0262845,34.6833575
+12680088,relation,שמורת טבע חוף כורסי,Hof Kursi Nature Reserve,,,,,,,,,,32.8317109,35.6449738
+12703401,relation,גן לאומי הר תבור,Har Tavor National Park,محمية جبل طابور,,,,,,,,,32.6843218,35.391426
+12876384,relation,גן לאומי כורזין,Korazim National Park,,,,,,,,,,32.9110979,35.5637195
+12885341,relation,שמורת טבע נחל ירמוך,Nahal Yarmukh Nature Reserve,,,,,,,,,,32.6638196,35.6143005
+12892359,relation,שמורת טבע ברכות שומרה,Brechot Somera Nature Reserve,محمية برك شومرا,,,,,,,,,33.0777804,35.282222
+12932422,relation,שמורת טבע יהודיה,Yehudiya Forest Nature Reserve,,,,,,,,,,32.9556761,35.7232177
+12940500,relation,גן לאומי היפודרום קיסריה,Caesarea Hippodrome National Park,,,,,,,,,,32.4989856,34.8959544
+12941158,relation,גן לאומי צור נתן,Zur Natan National Park,,,,,,,,,,32.241025,35.009117
+12941438,relation,שמורת טבע הבטיחה,Betiha Nature Reserve,,,,,,,,Q16131046,,32.8821556,35.6281564
+13191556,relation,متنزه العقبة البحري,Aqaba marine park,متنزه العقبة البحري,,,,,,,Q31866622,,29.4284362,34.9677103
+13191557,relation,محمية غابات دبين,Dibeen Forest Reserve,محمية غابات دبين,,,,,,,Q3383822,ar:محمية غابات دبين,32.2414824,35.8142369
+13460484,relation,שמורת טבע בריכת תמסח,Brechat Timsach Nature Reserve,,,,,,,,Q26765729,,32.5500895,34.9236078
+13635140,relation,שמורת טבע צוקי שיירות,Tzukei Shayarot Nature Reserve,,,,,,,,,,29.9426322,34.9678516
+13680074,relation,גן לאומי נחל אלכסנדר,Nahal Alexander National Park,,,,,,,,,,32.3969661,34.8759488
+13958382,relation,גן לאומי תל לכיש ותל מרשה,Tel Lakhis Ve'Tel Marsha National Park,,,,,,,,,,31.5771197,34.8742721
+14001625,relation,שמורת טבע כרי נעמן,Kare Na'aman Nature Reserve,,,,,,,,,,32.8673967,35.1049785
+14002328,relation,גן לאומי בית מירסם,Bet Mirsam National Park,,,,,,,,,,31.4573676,34.9090154
+14004425,relation,שמורת טבע הר סאסא,Har Sasa Nature Reserve,,,,,,,,,,33.0336548,35.3853634
+14005878,relation,גן לאומי עינות תלם,Enot Telem National Park,,,,,,,,,,31.8017805,35.1680446
+14071500,relation,גן לאומי צבעי מכתש רמון,Tzivey Mahtesh Ramon National Park,,,,,,,,,,30.6127928,34.8903465
+14103081,relation,אתר לאומי מחנה המעפילים בעתלית,Maapilim Camp National Monument,,,,,,,,,he:מחנה המעצר בעתלית,32.7122178,34.9492719
+14104553,relation,"אתר לאומי מושבת הראשונים וסביבותיה, ראש פינה",Moshevet Harishonim National Monument,,,,,,,,,,32.9706381,35.5344306
+14146550,relation,גן לאומי עובדיה,Ubeidiya National Park,,,,,,,,,,32.6897818,35.5564732
+14273529,relation,גן לאומי נחל נדר,Nahal Neder National Park,,,,,,,,,,32.7646158,35.0031801
+14735357,relation,שמורת טבע רמת דלתון,Ramat Dalton Nature Reserve,,,,,,,,,,33.0202245,35.4657172
+15018735,relation,גן לאומי מצודת כח,Mezudat Koah National Park,,,,,,,,,,33.1136367,35.5572751
+15018743,relation,שמורת טבע מרגליות,Margaliot nature reserve,,,,,,,,,,33.2131475,35.5415561
+15019472,relation,שמורת טבע שחלבים במנרה,Sahlavim BeManara Nature Reserve,,,,,,,,Q26764495,,33.1746126,35.5468821
+15019728,relation,שמורת טבע מורדות רכס הרי נפתלי,Mordot Rekhes Hare Naftali Nature Reserve,,,,,,,,,,33.1524855,35.5602298
+15020366,relation,שמורת טבע פארק הירדן,Park HaYarden Nature Reserve,,,,,,,,,,32.9579735,35.6204222
+15020399,relation,שמורת טבע בתות תנינים רז,Batot Tanninim Raz Nature Reserve,,,,,,,,,,32.5756186,35.1020824
+15023612,relation,שמורת טבע בריניקי,Berenice Nature Reserve,,,,,,,,,,32.7765585,35.5389835
+15085796,relation,שמורת טבע נחל יששכר,Nahal Yissachar Nature Reserve,,,,,,,,,,32.5652505,35.5130919
+15729348,relation,גן לאומי הרי יהודה,Judean Mountains National Park,,,,,,,,,,31.7986582,35.050471
+16177900,relation,שמורת טבע נחל חלילים,Nahal Halilim Nature Reserve,,,,,,,,,,31.804791,35.1629156
+16558118,relation,שמורת טבע מצוק ההעתקים,Mazuq Ha-He'teqim Nature Reserve,,,,,,,,,,31.6143571,35.3717396
+17067034,relation,פארק (גן לאומי) קומראן,Qumran National Park,الحديقة الوطنية قمران,,,,,,,Q223399,,31.7419417,35.4593736
+17067127,relation,שמורת טבע נחל אוג,Nahal Og Nature Reserve,ناحل أوغ,,,,,,,Q2513030,,31.7770497,35.4345069
+17231968,relation,גן לאומי סביב חומות ירושלים העתיקה,Jerusalem Walls National Park,,,,,,,,Q2908664,en:Jerusalem Walls National Park,31.7760327,35.2320454
+17342760,relation,שמורת טבע קנה וסמר,Kana & Samar Nature Reserve,محمية طبيعية قانة وسمر,,,,,,,Q6731691,,31.6132924,35.4198664
+17343059,relation,שמורת טבע אום זוקא,Umm Zuqa Nature Reserve,محمية طبيعية ام زوقا,,,,,,,,,32.2715337,35.5313017
+17348671,relation,שמורת טבע פצאל,Petza'el Nature Reserve,محمية طبيعية فصائيل,,,,,,,,,32.0556751,35.3953579
+17608331,relation,שמורת טבע חרובה,Haruva Nature Reserve,محمية طبيعية خروبة,,,,,,,,,32.1592578,35.4947259
+17785442,relation,"שמורת נחל ייט""ב וכוכב השחר",Nahal Yitav and Kochav HaShachar Nature Reserve,,,,,,,,,,31.959936,35.3726521
+18333939,relation,שמורת טבע לב מכתש רמון,Lev Mahtesh Ramon Nature Reserve,,,,,,,,,,30.6102893,34.8790286
+18333940,relation,גן לאומי לב מכתש רמון,Lev Mahtesh Ramon National Park,,,,,,,,,,30.6038494,34.8623534
+18334002,relation,גן לאומי פארק השרון,Park Hasharon National Park,,,,,,,,,,32.4425685,34.8880846
+18590495,relation,שמורת טבע יער הסוללים,Ya'ar Ha-Solelim Nature Reserve,,,,,,,,,,32.754596,35.2629539
+19045961,relation,שמורת טבע הר גמל,Har Gamal Nature Reserve,محمية طبيعية جبل جمل,,,,,,,,,32.9191226,35.2204062
+19046011,relation,שמורת טבע נחל גמל,Nahal Gamal Narure Reserve,محمية طبيعية وادي جمل,,,,,,,Q26765555,,32.9086099,35.2179579
+19254952,relation,City of Jerusalem,,,,,,,,,,,31.7782037,35.2353459

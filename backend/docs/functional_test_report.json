@@ -1,0 +1,155 @@
+{
+  "test_date": "2026-03-29T00:03:58.784551",
+  "tests": [
+    {
+      "name": "ETL pipeline",
+      "status": "FAIL",
+      "details": "No module named 'sqlalchemy'"
+    },
+    {
+      "name": "rooms_per_1000_visitors(100, 10000)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "beds_per_1000_visitors(200, 10000)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "occupancy_pressure_index(50, 80)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "growth_pressure_index(11000, 10000)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "capacity_adequacy_index(500, 10000)",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "compute_indicators_for_period returns all 5",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Indicators are numeric",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "classify under",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "classify over",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "classify balanced",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Forecast produces results",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Forecast has metrics",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Forecast has method",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "All predicted values positive",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Accommodation scenario runs",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Accommodation scenario has difference",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Demand scenario runs",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Demand scenario shows visitor change",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Priority score computed",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Has components",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Has recommendation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Has justification",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Batch scoring ranks correctly",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Batch has rank",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "6 tourism clusters defined",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Each cluster has required fields",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "6 accommodation classes",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Reproducibility: 100 runs produce identical output",
+      "status": "PASS",
+      "details": "unique outputs: 1"
+    }
+  ],
+  "summary": {
+    "passed": 28,
+    "failed": 1,
+    "total": 29
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "national": {
+    "mape": 4.89,
+    "mae": 3936.17,
+    "rmse": 4884.09,
+    "method": "prophet",
+    "train_months": 60,
+    "test_months": 12,
+    "actual": [
+      62048,
+      74825,
+      110781,
+      135962,
+      128778,
+      88513,
+      72389,
+      76461,
+      115956,
+      121285,
+      98965,
+      69671
+    ],
+    "predicted": [
+      68272,
+      75833,
+      113603,
+      139437,
+      129348,
+      91985,
+      80133,
+      86884,
+      113621,
+      122475,
+      101102,
+      75505
+    ],
+    "monthly_comparison": [
+      {
+        "month": 1,
+        "actual": 62048,
+        "predicted": 68272,
+        "error_pct": 10.0
+      },
+      {
+        "month": 2,
+        "actual": 74825,
+        "predicted": 75833,
+        "error_pct": 1.3
+      },
+      {
+        "month": 3,
+        "actual": 110781,
+        "predicted": 113603,
+        "error_pct": 2.5
+      },
+      {
+        "month": 4,
+        "actual": 135962,
+        "predicted": 139437,
+        "error_pct": 2.6
+      },
+      {
+        "month": 5,
+        "actual": 128778,
+        "predicted": 129348,
+        "error_pct": 0.4
+      },
+      {
+        "month": 6,
+        "actual": 88513,
+        "predicted": 91985,
+        "error_pct": 3.9
+      },
+      {
+        "month": 7,
+        "actual": 72389,
+        "predicted": 80133,
+        "error_pct": 10.7
+      },
+      {
+        "month": 8,
+        "actual": 76461,
+        "predicted": 86884,
+        "error_pct": 13.6
+      },
+      {
+        "month": 9,
+        "actual": 115956,
+        "predicted": 113621,
+        "error_pct": 2.0
+      },
+      {
+        "month": 10,
+        "actual": 121285,
+        "predicted": 122475,
+        "error_pct": 1.0
+      },
+      {
+        "month": 11,
+        "actual": 98965,
+        "predicted": 101102,
+        "error_pct": 2.2
+      },
+      {
+        "month": 12,
+        "actual": 69671,
+        "predicted": 75505,
+        "error_pct": 8.4
+      }
+    ]
+  },
+  "governorates": {
+    "AMM": {
+      "mape": 8.11,
+      "mae": 3541.5,
+      "rmse": 4289.19,
+      "test_months": 12
+    },
+    "IRB": {
+      "mape": 10.32,
+      "mae": 1261.0,
+      "rmse": 1524.8,
+      "test_months": 12
+    },
+    "ZAR": {
+      "mape": 7.56,
+      "mae": 503.42,
+      "rmse": 590.74,
+      "test_months": 12
+    },
+    "MAF": {
+      "mape": 8.92,
+      "mae": 203.0,
+      "rmse": 249.66,
+      "test_months": 12
+    },
+    "JER": {
+      "mape": 6.28,
+      "mae": 189.33,
+      "rmse": 234.07,
+      "test_months": 12
+    },
+    "AJL": {
+      "mape": 10.36,
+      "mae": 75.25,
+      "rmse": 91.88,
+      "test_months": 12
+    },
+    "BAL": {
+      "mape": 8.74,
+      "mae": 671.42,
+      "rmse": 839.96,
+      "test_months": 12
+    },
+    "MAD": {
+      "mape": 7.7,
+      "mae": 65.25,
+      "rmse": 79.18,
+      "test_months": 12
+    },
+    "KAR": {
+      "mape": 7.0,
+      "mae": 90.0,
+      "rmse": 115.31,
+      "test_months": 12
+    },
+    "TAF": {
+      "mape": 9.01,
+      "mae": 33.08,
+      "rmse": 40.28,
+      "test_months": 12
+    },
+    "MAA": {
+      "mape": 6.34,
+      "mae": 321.25,
+      "rmse": 387.82,
+      "test_months": 12
+    },
+    "AQAB": {
+      "mape": 6.87,
+      "mae": 287.67,
+      "rmse": 376.84,
+      "test_months": 12
+    }
+  },
+  "summary": {
+    "national_mape": 4.89,
+    "national_mape_pass": "True",
+    "governorate_avg_mape": 8.1,
+    "governorate_max_mape": 10.36,
+    "governorate_min_mape": 6.28,
+    "method": "prophet",
+    "train_period": "2020-01 to 2024-12",
+    "test_period": "2025-01 to 2025-12"
+  }
+}
