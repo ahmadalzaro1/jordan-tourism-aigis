@@ -23,7 +23,7 @@ export default function InvestmentExplorer() {
 
   useEffect(() => {
     fetchInvestmentRanker()
-      .then(setData)
+      .then((result) => setData(result as RankerResult))
       .catch(console.error)
       .finally(() => setLoading(false));
   }, []);

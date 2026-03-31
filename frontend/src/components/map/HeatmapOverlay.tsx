@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ScatterplotLayer, HeatmapLayer } from "@deck.gl/layers";
+import { ScatterplotLayer } from "@deck.gl/layers";
+import { HeatmapLayer } from "@deck.gl/aggregation-layers";
 import { MapboxOverlay } from "@deck.gl/mapbox";
 import { API_URL, THEME } from "@/lib/constants";
 import type { GeoJSONCollection } from "@/lib/types";
@@ -88,7 +89,7 @@ export default function HeatmapOverlay({ map, showHeatmap, showPriorityZones, se
           data: siteData,
           getPosition: (d: any) => d.coordinates,
           getRadius: 400,
-          getFillColor: (d: any) => siteColors[d.siteType] || [156, 163, 175, 200],
+          getFillColor: (d: any) => (siteColors[d.siteType] || [156, 163, 175, 200]) as [number, number, number, number],
           pickable: true,
           radiusMinPixels: 4,
           radiusMaxPixels: 20,

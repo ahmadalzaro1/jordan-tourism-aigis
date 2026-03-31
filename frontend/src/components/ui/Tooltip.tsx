@@ -23,7 +23,6 @@ export default function Tooltip({ text, children }: TooltipProps) {
           borderRadius: 6,
           border: `1px solid ${THEME.border}`,
           fontSize: 11,
-          whiteSpace: "nowrap",
           zIndex: 100,
           transition: "opacity 0.2s",
           pointerEvents: "none",

@@ -1,0 +1,81 @@
+name_en,name_ar,site_type,governorate_code,latitude,longitude,era,description
+Amman Citadel (Jabal al-Qal'a),القلعة عمان,archaeological,AMM,31.95,35.934,Neolithic-Roman-Umayyad,"Major archaeological complex: Temple of Hercules, Umayyad Palace, Byzantine Basilica, Jordan Archaeological Museum"
+Roman Theatre (Amman),المسرح الروماني عمان,archaeological,AMM,31.95,35.94,Roman (2nd century AD),"6,000-seat Roman amphitheatre, best-preserved in Jordan"
+Odeon Theatre (Amman),مسرح الأوديون عمان,archaeological,AMM,31.9497,35.9397,Roman (2nd century AD),"Small Roman theatre, used for concerts and events"
+Nymphaeum (Amman),النيمفيوم عمان,archaeological,AMM,31.951,35.938,Roman (2nd century AD),"Grand public fountain complex, once ornately decorated"
+King Hussein Mosque,مسجد الملك حسين,religious,AMM,31.951,35.936,Ottoman (rebuilt 1924),"Heart of modern downtown, rebuilt on ancient mosque site"
+King Abdullah I Mosque,مسجد الملك عبدالله الأول,religious,AMM,31.968,35.92,Modern (1989),"Major blue-domed mosque, Islamic museum inside"
+Ain Ghazal,عين غزال,archaeological,AMM,31.99,35.9,Neolithic (7250 BC),"One of the largest Neolithic sites in the Near East, plaster statues"
+Jordan Museum,المتحف الأردني,museum,AMM,31.948,35.93,Modern,"National museum with Dead Sea Scrolls, Ain Ghazal statues"
+Royal Automobile Museum,متحف السيارات الملكي,museum,AMM,31.975,35.86,Modern,Classic car collection of the Royal Family
+Rainbow Street,شارع الرينبو,cultural,AMM,31.953,35.922,Modern,"Cultural street with galleries, cafes, souks"
+Rujm al-Malfouf,رجم ملفوف,archaeological,AMM,31.96,35.95,Bronze Age,Iron Age tower and megalithic tomb
+Downtown Souks (Al-Balad),أسواق وسط البلد,cultural,AMM,31.95,35.936,Ottoman-Modern,"Traditional gold souk, spice market, and commercial district"
+Iraq al-Amir (Qasr al-Abd),عراق الأمير,archaeological,AMM,31.91,35.73,Hellenistic (2nd century BC),"Palace of the Tobiad family, one of few Hellenistic buildings in Jordan"
+Umm Qais (Gadara),أم قيس (غادارا),archaeological,IRB,32.6528,35.6811,Roman-Byzantine,"Decapolis city with Roman streets, theatre, basilica; views of Sea of Galilee"
+Pella (Tabqet Fahl),بيلا,archaeological,IRB,32.45,35.61,Neolithic-Umayyad,"One of the oldest continuously inhabited cities, 6000 years of occupation"
+Capitolias (Beit Ras),بيت راس (كابيتوليس),archaeological,IRB,32.57,35.87,Roman,"Decapolis city with theatre, tombs, and Roman road"
+Abila (Decapolis),أبيلا,archaeological,IRB,32.67,35.87,Roman-Byzantine,"Decapolis city with churches, tombs, underground cisterns"
+Tell Abu al-Kharaz,تل أبو الخرز,archaeological,IRB,32.52,35.6,Bronze Age-Iron Age,Major archaeological tell with 3000+ years of occupation
+Tell el-Hammam,تل الحمام,archaeological,IRB,31.88,35.66,Bronze Age,"Large Bronze Age city, possibly Biblical Sodom"
+Jerash (Gerasa),جرش (جيراسا),archaeological,JER,32.2806,35.8994,Roman-Byzantine,"Best-preserved Roman provincial city: Oval Plaza, Cardo, Theatre, Temple of Artemis, Hadrian's Arch"
+Hadrian's Arch (Jerash),بوابة هادريان جرش,archaeological,JER,32.277,35.894,Roman (129 AD),Triumphal arch built for Emperor Hadrian's visit
+Temple of Artemis (Jerash),معبد أرتميس جرش,archaeological,JER,32.281,35.897,Roman (150 AD),"Dedicated to patron goddess of Gerasa, massive Corinthian columns"
+South Theatre (Jerash),المسرح الجنوبي جرش,archaeological,JER,32.278,35.898,Roman (90 AD),"3,000-seat theatre with remarkable acoustics"
+Church of Saints Cosmas and Damianos,كنيسة القديسين قزمان ودميان,religious,JER,32.283,35.898,Byzantine (6th century),Beautiful Byzantine church mosaics
+Qasr Azraq,قصر الأزرق,archaeological,MAF,31.88,36.83,Roman-Ayyubid,"Roman fortress used by Lawrence of Arabia, basalt construction"
+Umm el-Jimal,أم الجمال,archaeological,MAF,32.3264,36.3658,Nabataean-Umayyad,"Black basalt city, UNESCO candidate, well-preserved Nabataean-Roman town"
+Qasr Burqu',قصر برقع,archaeological,MAF,32.56,37.13,Roman-Umayyad,Desert castle near volcanic lake
+Jawa,جوا,archaeological,MAF,32.33,36.83,Early Bronze Age,Earliest known dam-based irrigation settlement in the world
+Ajlun Castle (Qal'at ar-Rabadh),قلعة عجلون,archaeological,AJL,32.3325,35.7517,Ayyubid (1184 AD),"Saladin's castle, built to counter Crusaders, panoramic views"
+Tell Mar Elias,تل مار إلياس,religious,AJL,32.36,35.72,Byzantine,"Birthplace of Prophet Elijah, Byzantine church ruins with mosaics"
+Ajloun Forest Reserve,محمية غابات عجلون,natural,AJL,32.35,35.74,Natural,"RSCN nature reserve, hiking trails through Mediterranean forest"
+Al-Maghtas (Bethany Beyond the Jordan),المغطس,religious,BAL,31.8378,35.5456,Byzantine-Roman,"UNESCO World Heritage Site, baptism site of Jesus Christ"
+Dead Sea Beaches,شواطئ البحر الميت,natural,BAL,31.75,35.55,Natural,"Lowest point on Earth (-430m), salt lake, therapeutic mud"
+Wadi Mujib (Siq Trail),وادي الموجب,natural,BAL,31.46,35.57,Natural,"Grand Canyon of Jordan, canyon hiking, water trails"
+Deir Alla,دير علا,archaeological,BAL,32.18,35.62,Bronze Age-Iron Age,Important archaeological tell with Balaam inscription
+Lot's Cave (Zoar),مغارة لوط,religious,BAL,31.27,35.55,Byzantine,"Church built over cave where Lot sheltered, Byzantine mosaics"
+Wadi Shu'eib,وادي شعيب,archaeological,BAL,32.05,35.76,Bronze Age,Archaeological site with extensive Bronze Age occupation
+Azraq Wetland Reserve,محمية الأزرق المائية,natural,ZAR,31.83,36.82,Natural,"Desert oasis, bird migration stopover, RSCN reserve"
+Kharaneh IV,خارنة الرابع,archaeological,ZAR,31.9,36.8,Epipaleolithic,"Important hunter-gatherer site, one of the oldest huts in the world"
+Madaba Mosaic Map (St. George's Church),خريطة مادبا الفسيفسائية,religious,MAD,31.7167,35.7967,Byzantine (6th century),Oldest surviving cartographic depiction of the Holy Land
+Mount Nebo,جبل نيبو,religious,MAD,31.769,35.727,Byzantine,"Where Moses viewed the Promised Land, Moses Memorial Church with mosaics"
+Madaba Archaeological Park,الحديقة الأثرية مادبا,archaeological,MAD,31.717,35.796,Roman-Byzantine,"Hippolytus Hall mosaics, Byzantine church ruins"
+Mukawir (Machaerus),مكاور (مكاور),archaeological,MAD,31.56,35.66,Roman-Herodian,Herod's fortress where John the Baptist was beheaded
+Umm ar-Rasas (Kastrom Mefa'a),أم الرصاص,archaeological,MAD,31.4992,35.9214,Roman-Umayyad,"UNESCO World Heritage Site, extensive Byzantine mosaics"
+Shrine of the Prophet Lot (Nabi Lut),مقام النبي لوط,religious,MAD,31.73,35.78,Islamic,Islamic shrine dedicated to Prophet Lot
+Herodus Church (Madaba),كنيسة هيرودس مادبا,archaeological,MAD,31.718,35.797,Byzantine,Byzantine church with well-preserved floor mosaics
+Karak Castle (Crusader Fortress),قلعة الكرك,archaeological,KAR,31.1853,35.7047,Crusader-Ayyubid (1142 AD),"Largest Crusader castle in the Levantine, massive underground galleries"
+Bab ed-Dhra,باب الذرا,archaeological,KAR,31.23,35.53,Early Bronze Age,"Possible site of Biblical Sodom, extensive cemetery"
+Ghor es-Safi,غور الصافي,archaeological,KAR,31.05,35.48,Bronze-Byzantine,"Zoar/Biblical site, sugar factory ruins, lowest archaeological site on Earth"
+Wadi Mujib (Southern Section),وادي الموجب الجنوبي,natural,KAR,31.35,35.62,Natural,"Dramatic canyon, nature reserve, adventure trails"
+Karak Archaeological Museum,متحف الكرك الأثري,museum,KAR,31.185,35.705,Museum,Mamluke-era museum inside the castle complex
+Dana Nature Reserve,محمية ضانا الطبيعية,natural,TAF,30.64,35.62,Natural,"RSCN reserve, 320 species of plants, 200 species of birds, hiking"
+Busaira (Biblical Bozrah),بوصيرا,archaeological,TAF,30.76,35.59,Edomite-Roman,"Capital of the Edomite kingdom, Biblical Bozrah"
+Gharandal,غرندل,archaeological,TAF,30.56,35.58,Roman-Byzantine,Roman fort and settlement on the Via Nova Traiana
+Petra (Al-Khazneh / Treasury),البتراء (الخزنة),archaeological,MAA,30.3285,35.4444,Nabataean (300 BC-100 AD),"UNESCO World Heritage, New7Wonders, rose-red Nabataean city"
+Petra - The Siq,البتراء - السيق,archaeological,MAA,30.324,35.45,Nabataean,1.2km narrow gorge entrance to Petra
+Petra - The Monastery (Ad-Deir),البتراء - الدير,archaeological,MAA,30.34,35.434,Nabataean (1st century BC),"Largest carved monument in Petra, 50m wide facade"
+Petra - Royal Tombs,البتراء - المقابر الملكية,archaeological,MAA,30.331,35.443,Nabataean,"Urn Tomb, Silk Tomb, Corinthian Tomb, Palace Tomb"
+Petra - Theatre,البتراء - المسرح,archaeological,MAA,30.329,35.444,Nabataean-Roman,"Carved from rock face, seats 4,000-8,500"
+Petra - High Place of Sacrifice,البتراء - مرتفع الذبيحة,archaeological,MAA,30.331,35.442,Nabataean,Altar platform at summit with panoramic views
+Petra - Street of Facades,البتراء - شارع الواجهات,archaeological,MAA,30.328,35.444,Nabataean,Row of carved tomb facades along the main path
+Petra Museum,متحف البتراء,museum,MAA,30.322,35.45,Modern,280 artifacts from the Petra region
+Little Petra (Siq al-Barid),البتراء الصغيرة,archaeological,MAA,30.38,35.46,Nabataean,"Suburb of Petra with painted dining hall, triclinium"
+Shobak Castle (Montreal),قلعة الشوبك,archaeological,MAA,30.52,35.56,Crusader (1115 AD),"First Crusader castle in the Holy Land, built by Baldwin I"
+Humayma (Hawara),حميمة,archaeological,MAA,29.98,35.32,Nabataean-Roman-Abbasid,"Nabataean waystation, birthplace of Abbasid dynasty"
+Udhruh,أذرح,archaeological,MAA,30.28,35.62,Roman-Umayyad,"Roman fortress on Via Nova Traiana, Umayyad caravanserai"
+Ba'ja,بجا,archaeological,MAA,30.34,35.44,Pre-Pottery Neolithic,Pre-Pottery Neolithic settlement near Petra
+Basta,بسطا,archaeological,MAA,30.35,35.44,Pre-Pottery Neolithic,Neolithic site with early farming evidence
+Aqaba Marine Park,منتزه العقبة البحري,coastal,AQAB,29.4,34.98,Natural,"Coral reef diving and snorkeling, Red Sea marine life"
+Aqaba Castle (Mamluk Fort),قلعة العقبة,archaeological,AQAB,29.5233,35.0072,Mamluk-Crusader,"14th century Mamluk fort, site of the Arab Revolt's first battle (1917)"
+Aqaba Church,كنيسة العقبة,religious,AQAB,29.526,35.006,4th century AD,Oldest known purpose-built church in the world (3rd-4th century)
+Ayla (Islamic Aqaba),أيلة,archaeological,AQAB,29.524,35.008,Early Islamic (7th century),Ruins of the first Islamic city outside Arabian Peninsula
+Wadi Rum (Valley of the Moon),وادي رم,natural,AQAB,29.5722,35.4195,Natural/Nabataean,"UNESCO World Heritage, Lawrence of Arabia, sandstone mountains, petroglyphs"
+Wadi Rum - Khazali Canyon,وادي رم - وادي الخزالي,natural,AQAB,29.56,35.43,Natural/Thamudic,Narrow canyon with ancient Thamudic inscriptions
+Wadi Rum - Lawrence's Spring,وادي رم - عين لورانس,natural,AQAB,29.58,35.42,Natural,Natural spring associated with T.E. Lawrence
+Wadi Rum - Burdah Rock Bridge,وادي رم - جسر بردا,natural,AQAB,29.56,35.41,Natural,"Highest natural rock arch in Wadi Rum, 800m above desert"
+Wadi Rum - Um Fruth Rock Bridge,وادي رم - جسر أم فروث,natural,AQAB,29.55,35.42,Natural,Climbable natural rock bridge
+Wadi Rum - Jabal Umm ad-Dami,وادي رم - جبل أم الدامي,natural,AQAB,29.35,35.43,Natural,"Highest mountain in Jordan (1,854m), views of Saudi Arabia"
+Aqaba Marine Science Park,منتزه علوم البحار العقبة,museum,AQAB,29.42,34.98,Modern,Aquarium and marine education center
+Aqaba Flagpole (Arab Revolt Plaza),ساحة الثورة العربية العقبة,cultural,AQAB,29.523,35.007,Modern,Massive flagpole commemorating the Arab Revolt of 1917

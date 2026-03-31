@@ -1,0 +1,23 @@
+name,hotel_class,governorate_code,latitude,longitude,total_rooms,total_beds
+Grand Hyatt Amman,5-star,AMM,31.95,35.91,350,600
+Fairmont Amman,5-star,AMM,31.96,35.92,310,520
+Le Royal Amman,5-star,AMM,31.97,35.9,280,450
+Amman Rotana,5-star,AMM,31.955,35.915,430,700
+Corp Amman Hotel,4-star,AMM,31.948,35.925,200,340
+Movenpick Amman,5-star,AMM,31.962,35.905,220,380
+Kempinski Aqaba,5-star,AQAB,29.525,35.01,200,340
+Movenpick Resort Aqaba,5-star,AQAB,29.52,35.005,300,500
+DoubleTree Aqaba,4-star,AQAB,29.53,35.015,180,300
+Aqaba Gateway Hotel,3-star,AQAB,29.535,35.008,120,200
+Movenpick Resort Petra,5-star,MAA,30.32,35.47,180,300
+Petra Marriott,4-star,MAA,30.325,35.475,250,420
+Crown Plaza Petra,4-star,MAA,30.318,35.472,170,280
+Petra Moon Hotel,3-star,MAA,30.322,35.468,90,150
+Kempinski Ishtar Dead Sea,5-star,BAL,31.58,35.55,340,560
+Hilton Dead Sea,5-star,BAL,31.575,35.548,280,460
+Movenpick Dead Sea,5-star,BAL,31.585,35.552,310,510
+Wadi Rum Night Camp,eco-lodge,AQAB,29.61,35.39,40,80
+Sun City Camp,eco-lodge,AQAB,29.615,35.395,30,60
+Warwick Irbed,4-star,IRB,32.55,35.85,120,200
+Karak Hotel,3-star,KAR,31.18,35.7,60,100
+Movenpick Madaba,4-star,MAD,31.715,35.805,150,250
