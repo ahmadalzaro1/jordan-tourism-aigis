@@ -1,6 +1,7 @@
+import json
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from sqlalchemy import func, text
+from sqlalchemy import func
 from geoalchemy2.functions import ST_AsGeoJSON
 from app.db.database import get_db
 from app.db.models import Governorate, TourismSite, Hotel
@@ -21,7 +22,7 @@ def get_governorates(db: Session = Depends(get_db)):
     ).all()
     features = []
     for r in results:
-        geojson = eval(r.geojson) if r.geojson else None
+        geojson = json.loads(r.geojson) if r.geojson else None
         features.append(
             {
                 "type": "Feature",
@@ -57,7 +58,7 @@ def get_hotels(governorate_id: int = None, db: Session = Depends(get_db)):
     results = q.all()
     features = []
     for r in results:
-        geojson = eval(r.geojson) if r.geojson else None
+        geojson = json.loads(r.geojson) if r.geojson else None
         if not geojson and r.latitude and r.longitude:
             geojson = {"type": "Point", "coordinates": [r.longitude, r.latitude]}
         features.append(
@@ -94,7 +95,7 @@ def get_sites(governorate_id: int = None, db: Session = Depends(get_db)):
     results = q.all()
     features = []
     for r in results:
-        geojson = eval(r.geojson) if r.geojson else None
+        geojson = json.loads(r.geojson) if r.geojson else None
         if not geojson and r.latitude and r.longitude:
             geojson = {"type": "Point", "coordinates": [r.longitude, r.latitude]}
         features.append(
