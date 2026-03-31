@@ -1,0 +1,14 @@
+governorate_code,hotel_class,count,rooms,beds
+AMM,4-star,1,200,340
+AMM,5-star,5,1590,2650
+AQAB,3-star,1,120,200
+AQAB,4-star,1,180,300
+AQAB,5-star,2,500,840
+AQAB,eco-lodge,2,70,140
+BAL,5-star,3,930,1530
+IRB,4-star,1,120,200
+KAR,3-star,1,60,100
+MAA,3-star,1,90,150
+MAA,4-star,2,420,700
+MAA,5-star,1,180,300
+MAD,4-star,1,150,250
