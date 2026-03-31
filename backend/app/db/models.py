@@ -148,7 +148,86 @@ class TransportNetworkVersion(Base):
     id = Column(Integer, primary_key=True, index=True)
     version = Column(Integer, nullable=False)
     filename = Column(String(255), nullable=False)
-    effective_date = Column(String)  # ISO date when this data becomes effective
+    effective_date = Column(String)
     description = Column(String(500))
     record_count = Column(Integer, default=0)
-    imported_at = Column(String)  # ISO timestamp
+    imported_at = Column(String)
+
+
+class Incident(Base):
+    """
+    Tourism incident reported by citizens or MoTA staff.
+    Photos + GPS location. Workflow: reported → acknowledged → assigned → resolved.
+    """
+
+    __tablename__ = "incidents"
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String(200), nullable=False)
+    description = Column(String(1000))
+    incident_type = Column(
+        String(50)
+    )  # infrastructure, safety, cleanliness, overcrowding, accessibility
+    severity = Column(String(20))  # low, medium, high, critical
+    status = Column(
+        String(20), default="reported"
+    )  # reported, acknowledged, assigned, in_progress, resolved, closed
+    governorate_id = Column(Integer, ForeignKey("governorates.id"))
+    latitude = Column(Float)
+    longitude = Column(Float)
+    photo_url = Column(String(500))
+    reported_by = Column(String(100))
+    assigned_to = Column(String(100))
+    resolution = Column(String(1000))
+    resolution_photo_url = Column(String(500))
+    resolution_cost = Column(Float)
+    created_at = Column(String)
+    updated_at = Column(String)
+
+
+class Investment(Base):
+    """
+    Proposed tourism infrastructure investment.
+    Workflow: proposed → under_review → approved/rejected → implementing → completed.
+    """
+
+    __tablename__ = "investments"
+
+    id = Column(Integer, primary_key=True, index=True)
+    governorate_id = Column(Integer, ForeignKey("governorates.id"))
+    investment_type = Column(
+        String(50)
+    )  # new_hotel_4star, hotel_expansion, eco_lodge, etc.
+    estimated_cost = Column(Float)
+    approved_budget = Column(Float)
+    justification = Column(String(1000))
+    priority_score = Column(Float)
+    status = Column(
+        String(20), default="proposed"
+    )  # proposed, under_review, approved, rejected, implementing, completed
+    proposed_by = Column(String(100))
+    reviewed_by = Column(String(100))
+    implementation_timeline = Column(String(500))
+    conditions = Column(String(500))
+    created_at = Column(String)
+    updated_at = Column(String)
+
+
+class ConflictEvent(Base):
+    """
+    Regional conflict or crisis affecting tourism.
+    Triggers alerts and forecast adjustments.
+    """
+
+    __tablename__ = "conflict_events"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(200), nullable=False)
+    severity = Column(String(20))  # low, medium, high, critical
+    region = Column(String(100))
+    description = Column(String(1000))
+    affected_markets = Column(String(500))  # comma-separated market names
+    estimated_impact = Column(String(500))
+    status = Column(String(20), default="active")  # active, resolved
+    created_at = Column(String)
+    resolved_at = Column(String)
