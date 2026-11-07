@@ -1,9 +1,11 @@
 "use client";
 
+import { toCSV } from "@/lib/csv";
+import type { GeoJSONFeature } from "@/lib/types";
 import { useState } from "react";
 import { API_URL, THEME } from "@/lib/constants";
 
-export default function ExportPanel() {
+export default function ExportPanel({ year }: { year: number }) {
   const [exporting, setExporting] = useState<string | null>(null);
 
   const exportCSV = async (endpoint: string, filename: string) => {
@@ -12,54 +14,17 @@ export default function ExportPanel() {
       const res = await fetch(`${API_URL}${endpoint}`);
       const data = await res.json();
       
-      // Convert to CSV
-      if (Array.isArray(data) && data.length > 0) {
-        const headers = Object.keys(data[0]);
-        const csv = [
-          headers.join(","),
-          ...data.map(row => headers.map(h => JSON.stringify(row[h] ?? "")).join(","))
-        ].join("\n");
-        downloadFile(csv, `${filename}.csv`, "text/csv");
-      } else if (data.features) {
-        // GeoJSON → CSV
-        const rows = data.features.map((f: any) => ({
+      if (!res.ok) throw new Error(`Export failed: ${res.status}`);
+      let rows: Record<string, unknown>[];
+      if (Array.isArray(data)) rows = data;
+      else if (data.features) {
+        rows = data.features.map((f: GeoJSONFeature) => ({
           ...f.properties,
-          latitude: f.geometry?.coordinates?.[1],
-          longitude: f.geometry?.coordinates?.[0],
+          ...(f.geometry?.type === "Point" ? {latitude: f.geometry.coordinates[1], longitude: f.geometry.coordinates[0]} : {}),
         }));
-        if (rows.length > 0) {
-          const headers = Object.keys(rows[0]);
-          const csv = [
-            headers.join(","),
-            ...rows.map((row: any) => headers.map(h => JSON.stringify(row[h] ?? "")).join(","))
-          ].join("\n");
-          downloadFile(csv, `${filename}.csv`, "text/csv");
-        }
-      } else if (data.rankings) {
-        // Investment rankings
-        const rows = data.rankings.map((r: any) => ({
-          rank: r.rank,
-          governorate: r.governorate,
-          priority_score: r.priority_score,
-          investment_type: r.recommended_investment_type,
-          justification: r.justification,
-          demand_score: r.components?.demand_score,
-          capacity_gap_score: r.components?.capacity_gap_score,
-          occupancy_pressure_score: r.components?.occupancy_pressure_score,
-          growth_score: r.components?.growth_score,
-          accessibility_score: r.components?.accessibility_score,
-        }));
-        const headers = Object.keys(rows[0]);
-        const csv = [
-          headers.join(","),
-          ...rows.map((row: any) => headers.map(h => JSON.stringify(row[h] ?? "")).join(","))
-        ].join("\n");
-        downloadFile(csv, `${filename}.csv`, "text/csv");
-      } else {
-        // Generic object export
-        const csv = Object.entries(data).map(([k, v]) => `${k},${JSON.stringify(v)}`).join("\n");
-        downloadFile(csv, `${filename}.csv`, "text/csv");
-      }
+      } else if (data.rankings) rows = data.rankings;
+      else rows = Object.entries(data).map(([field, value]) => ({field, value}));
+      downloadFile(toCSV(rows), `${filename}.csv`, "text/csv;charset=utf-8");
     } catch (e) {
       console.error("Export failed:", e);
     }
@@ -69,10 +34,9 @@ export default function ExportPanel() {
   const exportMapSnapshot = () => {
     const mapCanvas = document.querySelector(".maplibregl-canvas") as HTMLCanvasElement;
     if (mapCanvas) {
-      const link = document.createElement("a");
-      link.download = "jordan-tourism-map.png";
-      link.href = mapCanvas.toDataURL("image/png");
-      link.click();
+      mapCanvas.toBlob(blob => {
+        if (blob) downloadBlob(blob, "jordan-tourism-map.png");
+      }, "image/png");
     }
   };
 
@@ -120,7 +84,6 @@ export default function ExportPanel() {
       <ExportButton
         label="Executive Summary (PDF)"
         onClick={() => {
-          const year = new Date().getFullYear();
           window.open(`${API_URL}/api/export/executive-summary?year=${year}`, "_blank");
         }}
         loading={false}
@@ -147,11 +110,14 @@ function ExportButton({ label, onClick, loading }: { label: string; onClick: () 
 }
 
 function downloadFile(content: string, filename: string, mimeType: string) {
-  const blob = new Blob([content], { type: mimeType });
+  downloadBlob(new Blob([content], { type: mimeType }), filename);
+}
+
+function downloadBlob(blob: Blob, filename: string) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
   a.download = filename;
   a.click();
-  URL.revokeObjectURL(url);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }

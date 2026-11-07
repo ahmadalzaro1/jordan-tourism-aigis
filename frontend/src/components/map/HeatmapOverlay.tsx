@@ -1,23 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { ScatterplotLayer } from "@deck.gl/layers";
 import { HeatmapLayer } from "@deck.gl/aggregation-layers";
 import { MapboxOverlay } from "@deck.gl/mapbox";
-import { API_URL, THEME } from "@/lib/constants";
+import { API_URL } from "@/lib/constants";
 import type { GeoJSONCollection } from "@/lib/types";
 
 interface HeatmapOverlayProps {
-  map: any; // MapLibre map instance
+  map: import("maplibre-gl").Map; // MapLibre map instance
   showHeatmap: boolean;
   showPriorityZones: boolean;
   selectedYear: number;
 }
 
-export default function HeatmapOverlay({ map, showHeatmap, showPriorityZones, selectedYear }: HeatmapOverlayProps) {
+export default function HeatmapOverlay({ map, showHeatmap, showPriorityZones }: HeatmapOverlayProps) {
   const [hotels, setHotels] = useState<GeoJSONCollection | null>(null);
   const [sites, setSites] = useState<GeoJSONCollection | null>(null);
-  const [deckOverlay, setDeckOverlay] = useState<MapboxOverlay | null>(null);
+  const deckOverlay = useRef<MapboxOverlay | null>(null);
 
   useEffect(() => {
     Promise.all([
@@ -32,23 +32,23 @@ export default function HeatmapOverlay({ map, showHeatmap, showPriorityZones, se
   useEffect(() => {
     if (!map) return;
 
-    const layers: any[] = [];
+    const layers: import("@deck.gl/core").Layer[] = [];
 
     // Heatmap: visitor density from hotel locations (proxy)
     if (showHeatmap && hotels?.features) {
       const hotelData = hotels.features
-        .filter(f => f.geometry?.coordinates)
+        .filter((f): f is typeof f & { geometry: import("geojson").Point } => f.geometry?.type === "Point")
         .map(f => ({
-          coordinates: f.geometry.coordinates,
-          weight: (f.properties?.total_rooms || 50) / 100,
+          coordinates: f.geometry.coordinates as [number, number],
+          weight: Number(f.properties?.total_rooms || 50) / 100,
         }));
 
       layers.push(
         new HeatmapLayer({
           id: "visitor-heatmap",
           data: hotelData,
-          getPosition: (d: any) => d.coordinates,
-          getWeight: (d: any) => d.weight,
+          getPosition: (d: {coordinates: [number, number]}) => d.coordinates,
+          getWeight: (d: {weight: number}) => d.weight,
           radiusPixels: 60,
           intensity: 1.5,
           threshold: 0.05,
@@ -67,10 +67,10 @@ export default function HeatmapOverlay({ map, showHeatmap, showPriorityZones, se
     // Priority zones: colored circles for governorates based on classification
     if (showPriorityZones && sites?.features) {
       const siteData = sites.features
-        .filter(f => f.geometry?.coordinates)
+        .filter((f): f is typeof f & { geometry: import("geojson").Point } => f.geometry?.type === "Point")
         .map(f => ({
-          coordinates: f.geometry.coordinates,
-          siteType: f.properties?.site_type,
+          coordinates: f.geometry.coordinates as [number, number],
+          siteType: String(f.properties?.site_type),
           name: f.properties?.name_en,
         }));
 
@@ -87,9 +87,9 @@ export default function HeatmapOverlay({ map, showHeatmap, showPriorityZones, se
         new ScatterplotLayer({
           id: "priority-zones",
           data: siteData,
-          getPosition: (d: any) => d.coordinates,
+          getPosition: (d: {coordinates: [number, number]}) => d.coordinates,
           getRadius: 400,
-          getFillColor: (d: any) => (siteColors[d.siteType] || [156, 163, 175, 200]) as [number, number, number, number],
+          getFillColor: (d: {siteType: string}) => (siteColors[d.siteType] || [156, 163, 175, 200]) as [number, number, number, number],
           pickable: true,
           radiusMinPixels: 4,
           radiusMaxPixels: 20,
@@ -103,11 +103,11 @@ export default function HeatmapOverlay({ map, showHeatmap, showPriorityZones, se
       layers,
     });
 
-    if (deckOverlay) {
-      map.removeControl(deckOverlay);
+    if (deckOverlay.current) {
+      map.removeControl(deckOverlay.current);
     }
     map.addControl(overlay);
-    setDeckOverlay(overlay);
+    deckOverlay.current = overlay;
 
     return () => {
       if (overlay) {

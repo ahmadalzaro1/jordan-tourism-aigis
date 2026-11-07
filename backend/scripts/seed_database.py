@@ -12,6 +12,8 @@ from sqlalchemy.orm import sessionmaker
 # Add parent to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from app.paths import DATA_DIR
+from app.official import official_mode
 from app.db.database import Base
 from app.db.models import Governorate, TourismSite, Hotel
 from scripts.generate_sample_data import GOVERNORATES, HOTELS
@@ -28,6 +30,8 @@ def seed():
     Session = sessionmaker(bind=engine)
     db = Session()
 
+    base_path = os.path.dirname(os.path.abspath(__file__))
+
     # Seed governorates
     print("Seeding governorates...")
     for gov in GOVERNORATES:
@@ -42,6 +46,22 @@ def seed():
             )
             db.add(g)
     db.commit()
+
+    # Load real administrative polygons, matched explicitly by ISO code.
+    boundary_path = os.path.join(os.path.dirname(os.path.dirname(base_path)), "data", "geo", "jordan_governorates_gbopen.geojson")
+    iso_codes = {"JO-AM":"AMM", "JO-IR":"IRB", "JO-AZ":"ZAR", "JO-MA":"MAF",
+                 "JO-JA":"JER", "JO-AJ":"AJL", "JO-BA":"BAL", "JO-MD":"MAD",
+                 "JO-KA":"KAR", "JO-AT":"TAF", "JO-MN":"MAA", "JO-AQ":"AQAB"}
+    if os.path.exists(boundary_path):
+        with open(boundary_path) as handle:
+            boundaries = json.load(handle)
+        for feature in boundaries["features"]:
+            code = iso_codes.get(feature["properties"]["shapeISO"])
+            if not code:
+                raise ValueError("Unmapped boundary ISO code")
+            db.execute(text("UPDATE governorates SET geometry=ST_Multi(ST_SetSRID(ST_GeomFromGeoJSON(:geometry),4326)) WHERE code=:code"),
+                       {"geometry": json.dumps(feature["geometry"]), "code": code})
+        db.commit()
 
     # Build governorate lookup
     govs = {g.code: g.id for g in db.query(Governorate).all()}
@@ -86,10 +106,26 @@ def seed():
     db.commit()
     print(f"  {len(HOTELS)} hotels seeded")
 
+    # Apply reviewed fixes to existing records, not just newly inserted seeds.
+    for correction in json.loads((DATA_DIR/"geo/location-corrections.json").read_text()):
+        model, field = (TourismSite, TourismSite.name_en) if correction["kind"] == "site" else (Hotel, Hotel.name)
+        record = db.query(model).filter(field == correction["name"]).one()
+        record.governorate_id = govs[correction["governorate_code"]]
+        record.latitude, record.longitude = correction["latitude"], correction["longitude"]
+        record.geometry = None
+    db.commit()
+    if official_mode():
+        # Inventories remain locations; unverified facility capacities are never presented as official.
+        for hotel in db.query(Hotel):
+            hotel.total_rooms = None
+            hotel.total_beds = None
+        db.commit()
+        db.close()
+        print("Official mode: reviewed locations loaded; generated tourism counts are not seeded.")
+        return
+
     # Seed visitor and occupancy data from CSVs
-    sample_dir = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "sample"
-    )
+    sample_dir = str(DATA_DIR / "sample")
 
     if os.path.exists(os.path.join(sample_dir, "visitors.csv")):
         print("Seeding visitor data from CSV...")

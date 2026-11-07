@@ -1,8 +1,8 @@
 {
   "national": {
     "mape": 4.89,
-    "mae": 3936.17,
-    "rmse": 4884.09,
+    "mae": 3936.0,
+    "rmse": 4883.93,
     "method": "prophet",
     "train_months": 60,
     "test_months": 12,
@@ -21,12 +21,12 @@
       69671
     ],
     "predicted": [
-      68272,
+      68271,
       75833,
       113603,
       139437,
       129348,
-      91985,
+      91984,
       80133,
       86884,
       113621,
@@ -38,7 +38,7 @@
       {
         "month": 1,
         "actual": 62048,
-        "predicted": 68272,
+        "predicted": 68271,
         "error_pct": 10.0
       },
       {
@@ -68,7 +68,7 @@
       {
         "month": 6,
         "actual": 88513,
-        "predicted": 91985,
+        "predicted": 91984,
         "error_pct": 3.9
       },
       {

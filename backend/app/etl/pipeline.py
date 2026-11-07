@@ -21,10 +21,51 @@ def run_etl(filepath: str, dataset_type: str, db: Session) -> dict:
         "hotels": _import_hotels,
         "sites": _import_sites,
     }
+    validate_csv(filepath, dataset_type, db)
     handler = handlers.get(dataset_type)
     if not handler:
         raise ValueError(f"Unknown dataset_type: {dataset_type}")
     return handler(filepath, db)
+
+
+def validate_csv(filepath, dataset_type, db):
+    required = {
+        "visitors": ["governorate_code", "year", "month", "total_visitors"],
+        "occupancy": ["governorate_code", "year", "month", "avg_occupancy_rate", "total_rooms", "total_beds"],
+        "site_visits": ["site_id", "year", "month", "total_visits"],
+        "hotels": ["name", "governorate_code", "latitude", "longitude"],
+        "sites": ["name_en", "governorate_code", "latitude", "longitude"],
+    }
+    if dataset_type not in required:
+        raise ValueError(f"Unknown dataset_type: {dataset_type}")
+    frame = pd.read_csv(filepath)
+    frame.columns = frame.columns.str.strip().str.lower().str.replace(" ", "_")
+    missing = set(required[dataset_type]) - set(frame.columns)
+    if missing:
+        raise ValueError(f"Missing required columns: {sorted(missing)}")
+    if frame[required[dataset_type]].isna().any().any():
+        raise ValueError("Required fields cannot be empty")
+    if "governorate_code" in frame:
+        codes = {g.code for g in db.query(Governorate).all()}
+        if not set(frame.governorate_code).issubset(codes):
+            raise ValueError("Unknown governorate code")
+    if "site_id" in frame:
+        ids = {s.id for s in db.query(TourismSite).all()}
+        if not set(frame.site_id).issubset(ids):
+            raise ValueError("Unknown tourism site ID")
+    integer_cols = [c for c in ["year", "month", "site_id", "total_visitors", "international_visitors", "domestic_visitors", "total_visits", "total_rooms", "total_beds", "occupied_rooms"] if c in frame]
+    for col in integer_cols:
+        vals = pd.to_numeric(frame[col], errors="raise")
+        if vals.isna().any() or not vals.map(lambda x: float(x).is_integer()).all() or (vals < 0).any():
+            raise ValueError(f"{col} must contain nonnegative integers")
+    for col, lo, hi in [("month",1,12),("year",1900,2100),("avg_occupancy_rate",0,100),("latitude",-90,90),("longitude",-180,180)]:
+        if col in frame and not pd.to_numeric(frame[col], errors="raise").between(lo,hi).all():
+            raise ValueError(f"{col} must be between {lo} and {hi}")
+    if {"total_visitors", "international_visitors", "domestic_visitors"}.issubset(frame):
+        if not (frame.total_visitors == frame.international_visitors + frame.domestic_visitors).all():
+            raise ValueError("International and domestic visitors must sum to total visitors")
+    if {"occupied_rooms", "total_rooms"}.issubset(frame) and (frame.occupied_rooms > frame.total_rooms).any():
+        raise ValueError("Occupied rooms cannot exceed total rooms")
 
 
 def _import_visitors(filepath: str, db: Session) -> dict:

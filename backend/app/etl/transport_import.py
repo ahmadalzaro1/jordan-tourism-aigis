@@ -16,11 +16,8 @@ Computes:
 import os
 import json
 
-OUTPUT_DIR = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-    "data",
-    "transport",
-)
+from app.paths import DATA_DIR
+OUTPUT_DIR = str(DATA_DIR / "transport")
 
 # Jordan governorate capitals and highway connections
 # Based on OSM road network analysis

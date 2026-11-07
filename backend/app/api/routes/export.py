@@ -16,7 +16,7 @@ from io import BytesIO
 from fastapi import APIRouter, Depends, Query
 from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
-from sqlalchemy import func
+from sqlalchemy import cast, Float, func
 from app.db.database import get_db
 from app.db.models import (
     Governorate,
@@ -64,12 +64,19 @@ def export_executive_summary(year: int = Query(2025), db: Session = Depends(get_
     nat_occupancy = (
         db.query(
             func.avg(OccupancyData.avg_occupancy_rate),
-            func.coalesce(func.sum(OccupancyData.total_rooms), 0),
-            func.coalesce(func.sum(OccupancyData.total_beds), 0),
+            func.coalesce(func.avg(cast(OccupancyData.total_rooms, Float)), 0),
+            func.coalesce(func.avg(cast(OccupancyData.total_beds, Float)), 0),
         )
         .filter(OccupancyData.year == year)
         .first()
     )
+
+    stocks = db.query(
+        func.avg(cast(OccupancyData.total_rooms, Float)).label("rooms"),
+        func.avg(cast(OccupancyData.total_beds, Float)).label("beds"),
+    ).filter(OccupancyData.year == year).group_by(OccupancyData.governorate_id).subquery()
+    rooms, beds = db.query(func.sum(stocks.c.rooms), func.sum(stocks.c.beds)).one()
+    nat_occupancy = (nat_occupancy[0], rooms or 0, beds or 0)
 
     hotel_count = db.query(func.count(Hotel.id)).scalar()
 
@@ -86,7 +93,7 @@ def export_executive_summary(year: int = Query(2025), db: Session = Depends(get_
         o = (
             db.query(
                 func.avg(OccupancyData.avg_occupancy_rate),
-                func.coalesce(func.sum(OccupancyData.total_beds), 0),
+                func.coalesce(func.avg(cast(OccupancyData.total_beds, Float)), 0),
             )
             .filter(OccupancyData.governorate_id == gov.id, OccupancyData.year == year)
             .first()

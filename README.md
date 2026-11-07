@@ -1,91 +1,93 @@
 # Jordan Tourism AI-GIS
 
-AI-Enabled Geo-Analytics Platform for Tourism Demand, Infrastructure Optimization, and Investment Prioritization in Jordan.
+An interactive geographic workspace for Jordan tourism, using official Ministry of Tourism and Antiquities (MoTA) observations and a curated place inventory. Built with Next.js / MapLibre, FastAPI / PostGIS, and a Python SDK.
 
-## What This Is
+**Official data is the default.** National arrivals are not allocated to governorates. Hotel reporting locations are not treated as administrative regions. Site admissions are not unique visitors. This independent project is not a ministry commission or deployment.
 
-An open-source analytics platform that integrates 55 data sources across 12 tiers to provide data-driven insights into Jordan's tourism sector. Built for the Ministry of Tourism and Antiquities (MoTA) / Ministry of Digital Economy and Entrepreneurship (MoDEE).
+## Published observations
 
-## Key Results
+| Dataset | Coverage | Records |
+|---|---|---:|
+| National monthly inbound visitor trips | 2018–2025 | 96 |
+| National annual inbound visitor trips | 2018–2025 | 8 |
+| Annual visits to reported sites | 30 sites, 2024–2025 | 60 |
+| Monthly site visits in the imported publications | 2024–2025, gaps retained | 214 |
+| Annual accommodation indicators | 2024–2025 | 2 |
+| Occupancy by reporting location | 2025, includes national total | 14 |
+| Guest check-ins and nights by reporting location | 2025, includes national total | 17 |
 
-| Metric | Target (RFP) | Achieved |
-|--------|-------------|----------|
-| Forecast MAPE | ≤ 20% | **3.58%** |
-| Reproducibility | 100% | **100%** |
-| Data Sources | 3 | **55** |
-| Analytics Functions | 15+ | **70** |
+The pinned [observations](data/official/tourism.json) include workbook, sheet and row references. The [source manifest](data/official/sources.json) identifies 23 public MoTA workbooks with retrieval dates and SHA-256 hashes. Only normalized factual observations and provenance are versioned; source workbooks remain local.
 
-## Architecture
+2025 national inbound visitor trips round to **7,041,287**. Petra records **582,550** site visits in the preliminary 2025 table. Accommodation records **3,202,595** guest check-ins and **5,179,961** guest nights. These are different populations and must not be added together.
 
-```
-Frontend (Next.js + MapLibre + shadcn/ui)    ← 22 React components
-    ↕
-Backend (FastAPI + PostgreSQL/PostGIS)        ← 28 Python modules
-    ↕
-Apache Superset                               ← BI dashboards
-    ↕
-55 Data Sources                               ← Tourism, weather, calendar, conflicts, economics
-```
+Missing values remain null. Two inconsistencies in the published 2024 Ma’in annual/monthly site totals are retained and flagged, rather than silently corrected. Underlying fractional national estimates retain their source precision; only display values are rounded.
 
-## Quick Start
+## Map corrections
 
-```bash
-# Start all services
-docker-compose up -d
+All **80 site markers and 22 hotel markers** pass point-in-assigned-governorate checks against the bundled geoBoundaries / gbOpen polygons. The nine previously inconsistent site assignments/coordinates and three Dead Sea hotel coordinates are corrected in seeds, CSVs, and existing-database updates. See the [12 corrections and their sources](data/geo/location-corrections.json).
 
-# Seed database + create views
-cd backend && python3 scripts/setup_database.py
+The map is a curated inventory, not an exhaustive accommodation census. Individual hotel room/bed capacities are unverified and omitted in official mode. Boundary data represents 2006 administrative boundaries, under CC BY 2.5; selected coordinates use GeoNames under CC BY 4.0. Attribution and source URLs are retained.
 
-# Access:
-# Dashboard:  http://localhost:3000
-# API:        http://localhost:8000/docs
-# Superset:   http://localhost:8088 (admin/admin)
+## Run locally
+
+Requires Python 3.11, Node 22, and PostgreSQL with PostGIS. Use a new development database for official mode; existing demo databases are preserved, not erased.
+
+```sh
+python3.11 -m venv .venv
+.venv/bin/python -m pip install -r backend/requirements.txt
+# Export DATABASE_URL for your own development PostGIS database.
+.venv/bin/python backend/scripts/setup_database.py
+PYTHONPATH=backend .venv/bin/python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-## Data Sources (55 files, 12 tiers)
+```sh
+cd frontend
+npm ci
+npm run dev
+```
 
-| Tier | Data | Records |
-|------|------|---------|
-| Tourism | Visitors, occupancy, sites, hotels | 7,680 |
-| OpenStreetMap | Hotels, restaurants, historic sites | 15,224 |
-| Weather | Temperature, rainfall × 12 governorates | 936 |
-| Calendar | Ramadan, Eid, public holidays | 108 |
-| Economics | GDP, inflation, unemployment, exchange rates | 70 |
-| Wikipedia | Page views for 7 tourism sites | 432 |
-| Aviation | Queen Alia airport passengers | 72 |
-| Conflicts | Regional conflict timeline | 21 events |
-| Markets | Source market vulnerability analysis | 12 markets |
-| Transport | Road accessibility scores | 12 governorates |
+The default dashboard reads `/api/official/overview` and the reviewed `/api/geo` inventory. The official endpoints and SDK `sdk.official.overview(2025)` work from the checked-in normalized data. `/api/official/forecast` runs an experimental national forecast. Legacy generated-data analytics and write routes return HTTP 410 in official mode.
 
-## Analytics Functions (70)
+Configure `NEXT_PUBLIC_API_URL` and backend `CORS_ORIGINS` together when changing local ports. `TOURISM_DATA_DIR` selects an explicit dataset directory. Compose defaults to official mode and binds services to loopback:
 
-- **Indicators** (32): capacity, seasonality, elasticity, concentration, recovery, spillover
-- **Scoring** (14): priority investment, conflict resilience, ROI proxy
-- **Classification** (3): capacity classification (data-driven thresholds)
-- **Forecasting** (4): Prophet + ARIMA with autoresearch optimization
-- **Simulation** (2): accommodation and demand scenarios
-- **Data-Driven** (7): anomaly detection, trend analysis, confidence scoring
-- **Clusters** (6): tourism clusters (Petra, Wadi Rum, Aqaba, Dead Sea, Amman, Karak)
+```sh
+docker compose up -d --build
+docker compose exec backend python scripts/setup_database.py
+```
 
-## Key Findings
+Optional Superset remains a local development service. Its seven legacy SQL views describe **demo-mode** tables, not the new official JSON observations; do not label those views official. Replace development credentials before any production use. The Syntax website exposes a separate read-only explorer, not this unauthenticated development API.
 
-1. **Hotel supply predicts demand** (r=+0.812) — build more hotels, tourists come
-2. **All governorates complement each other** (r=+0.82-0.90) — tourists visit multiple
-3. **Petra is 41% dependent on tourism** — extreme vulnerability
-4. **43% of tourism is conflict-vulnerable** — regional instability matters
-5. **Neighbor spillover**: Dead Sea→Amman (r=+0.546), Aqaba→Petra (r=+0.424)
-6. **GDP growth predicts next year tourism** (r=+0.841)
-7. **Summer drops recover in 10 months, winter drops in 3 months**
+## Rebuild from source publications
 
-## Forecast Performance
+```sh
+.venv/bin/python backend/scripts/import_official_data.py --download
+```
 
-| Configuration | MAPE |
-|--------------|------|
-| Prophet cps=0.01 (optimal) | **3.58%** |
-| Prophet cps=0.05 (default) | 4.89% |
-| ExpSmoothing (mul, mul) | 3.71% |
-| ARIMA (1,1,1) | 26.5% |
+A changed source hash stops the import for review. The importer selects the real national data sheets by their table heading, avoiding stale 2004 template worksheets present in several ministry files. Without `--download`, it verifies and normalizes already downloaded workbooks.
 
-## License
+## Forecast verification
 
-MIT
+On the actual national series, training through December 2024 and testing January–December 2025:
+
+| Method | Holdout MAPE |
+|---|---:|
+| Prophet 1.1.6, default settings | 19.82% |
+| Seasonal naive: repeat the preceding year | 14.00% |
+
+Prophet underperforms this simple baseline on that holdout. The model remains experimental; neither historical error nor its intervals guarantee future performance. There is no governorate forecast inferred from national data. Older 3.58% / 4.89% figures apply only to generated fixtures, not these real observations.
+
+## Tests and demo fixtures
+
+**73 backend checks** pass, including official-data reconciliation, source provenance, geographic corrections, API isolation, and the legacy regression suite. Frontend checks cover CSV escaping, types, lint and production build. See [official-data validation](docs/validation/2026-11-07-official-data.md) and the [earlier demo validation](docs/validation/2026-11-07-validation.md).
+
+```sh
+PYTHONPATH=backend .venv/bin/python -m pytest backend/tests
+cd frontend
+npm test
+npm run lint
+npm run build
+```
+
+Database integration tests require `GIS_VALIDATION_DATABASE_URL` pointing to the isolated disposable database documented in the report. Without it, database-dependent tests skip. For the preserved demonstration application, explicitly set **both** backend `DATA_MODE=demo` and frontend `NEXT_PUBLIC_DATA_MODE=demo` before building/running. `--generate-demo` is rejected unless demo mode is explicit.
+
+The module named `mcp/server.py` is a keyword query router over the SDK, not a standard MCP transport or general reasoning agent. Workflow notifications and automated forecast adjustments remain planned hooks.

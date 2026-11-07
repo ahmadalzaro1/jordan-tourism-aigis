@@ -20,7 +20,7 @@ export default function TimeSeriesChart({
   showForecast = false,
   forecastData = [],
 }: TimeSeriesChartProps) {
-  const { points, labels, maxVal, forecastPoints, forecastLabels } = useMemo(() => {
+  const { points, labels, forecastPoints } = useMemo(() => {
     const pts = data.map(d => d.total);
     const lbls = data.map(d => `${d.year}-${String(d.month).padStart(2, "0")}`);
     const max = Math.max(...pts, 1);

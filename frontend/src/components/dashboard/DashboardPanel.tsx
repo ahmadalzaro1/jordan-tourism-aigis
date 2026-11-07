@@ -1,7 +1,8 @@
 "use client";
 
+import type { NationalSummary, GovernorateSummary } from "@/lib/types";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { API_URL } from "@/lib/constants";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -13,7 +14,7 @@ import { BarChart3, Users, Globe, Hotel, AlertTriangle, ArrowLeft } from "lucide
 import TimeSeriesChart from "@/components/charts/TimeSeriesChart";
 
 interface DashboardPanelProps {
-  summary: any;
+  summary: NationalSummary | null;
   loading: boolean;
   selectedYear: number;
   onYearChange: (year: number) => void;
@@ -123,7 +124,7 @@ function DashboardSkeleton() {
 export default function DashboardPanel({
   summary, loading, selectedYear, onYearChange, selectedGovId, onGovSelect,
 }: DashboardPanelProps) {
-  const [govDetail, setGovDetail] = useState<any>(null);
+  const [govDetail, setGovDetail] = useState<GovernorateSummary | null>(null);
   const [destinationType, setDestinationType] = useState("");
 
   useEffect(() => {
@@ -266,7 +267,7 @@ export default function DashboardPanel({
                   <motion.div variants={item}>
                     <div className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">Occupancy</div>
                     <TimeSeriesChart
-                      data={govDetail.occupancy.map((o: any) => ({ year: o.year, month: o.month, total: o.rate }))}
+                      data={govDetail.occupancy.map((o) => ({ year: o.year, month: o.month, total: o.rate }))}
                       title=""
                       color="#22c55e"
                       height={120}

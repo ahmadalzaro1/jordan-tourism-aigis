@@ -1,3 +1,4 @@
+import numpy as np
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 from sqlalchemy import func
@@ -23,14 +24,14 @@ def get_comprehensive_analysis(governorate_id: int, year: int = Query(2025), db:
     visitors = db.query(
         VisitorData.year, VisitorData.month,
         VisitorData.total_visitors, VisitorData.international_visitors,
-    ).filter(VisitorData.governorate_id == governorate_id).order_by(
+    ).filter(VisitorData.governorate_id == governorate_id, VisitorData.year == year).order_by(
         VisitorData.year, VisitorData.month
     ).all()
 
     occupancy = db.query(
         OccupancyData.year, OccupancyData.month,
         OccupancyData.avg_occupancy_rate, OccupancyData.total_beds,
-    ).filter(OccupancyData.governorate_id == governorate_id).order_by(
+    ).filter(OccupancyData.governorate_id == governorate_id, OccupancyData.year == year).order_by(
         OccupancyData.year, OccupancyData.month
     ).all()
 

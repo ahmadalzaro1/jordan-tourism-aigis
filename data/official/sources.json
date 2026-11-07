@@ -1,0 +1,232 @@
+[
+  {
+    "id": "visitors_2025_00",
+    "file": "raw/visitors_2025_00.xls",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/arraivals_by_month-2025-8.xls",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%AA%D8%B5%D9%86%D9%8A%D9%81_%D8%A7%D9%84%D8%B2%D9%88%D8%A7%D8%B1_%D9%84%D8%B9%D8%A7%D9%85_2025",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:12.814154+00:00",
+    "bytes": 52224,
+    "sha256": "66eabfe8fc5af0ab7e4e717ca3c62c5467a97ec31869c95cd981acd8a95714e6"
+  },
+  {
+    "id": "visitors_2023_02",
+    "file": "raw/visitors_2023_02.xls",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/arraivals_by_month-2023-2.xls",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%AA%D8%B5%D9%86%D9%8A%D9%81_%D8%A7%D9%84%D8%B2%D9%88%D8%A7%D8%B1_%D9%84%D8%B9%D8%A7%D9%85_2023",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:16.300558+00:00",
+    "bytes": 45568,
+    "sha256": "672b86be5e6217a99822e3d05b3327f93e4012089c5919ac6fe770ca5efa0565"
+  },
+  {
+    "id": "visitors_2021_00",
+    "file": "raw/visitors_2021_00.xls",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/w_arraivals_by_month-2021-0.xls",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%AA%D8%B5%D9%86%D9%8A%D9%81_%D8%A7%D9%84%D8%B2%D9%88%D8%A7%D8%B1_%D9%84%D8%B9%D8%A7%D9%85_2021",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:12.651937+00:00",
+    "bytes": 42496,
+    "sha256": "c3875ed222ec881ffdd2b6b0ffe2ca4498f74c2fc26ad41b9b8241965edd2e49"
+  },
+  {
+    "id": "visitors_2019_04",
+    "file": "raw/visitors_2019_04.xls",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/2.1_arraivals_by_month-2019.xls",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%AA%D8%B5%D9%86%D9%8A%D9%81_%D8%A7%D9%84%D8%B2%D9%88%D8%A7%D8%B1_%D9%84%D8%B9%D8%A7%D9%85_2019",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:12.677538+00:00",
+    "bytes": 45568,
+    "sha256": "d71d0464c4341a0481ffcc0c16d254bdb0ec4bda67baad908eea1a9c0d0a6184"
+  },
+  {
+    "id": "sites_2025_00",
+    "file": "raw/sites_2025_00.xlsx",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/5.2_sites_12-2025.xlsx",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%B2%D9%88%D8%A7%D8%B1_%D8%A7%D9%84%D9%85%D9%88%D8%A7%D9%82%D8%B9_%D8%A7%D9%84%D8%A7%D8%AB%D8%B1%D9%8A%D8%A9_%D9%88_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A%D8%A9_%D9%84%D8%B9%D8%A7%D9%85_2025",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:13.148704+00:00",
+    "bytes": 25995,
+    "sha256": "3e268e968834320c0137c3328f2d724177cc4dc51cc2b1f8317b983d95186d2a"
+  },
+  {
+    "id": "sites_2025_01",
+    "file": "raw/sites_2025_01.xls",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/5.3-petra_2025-0.xls",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%B2%D9%88%D8%A7%D8%B1_%D8%A7%D9%84%D9%85%D9%88%D8%A7%D9%82%D8%B9_%D8%A7%D9%84%D8%A7%D8%AB%D8%B1%D9%8A%D8%A9_%D9%88_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A%D8%A9_%D9%84%D8%B9%D8%A7%D9%85_2025",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:12.854442+00:00",
+    "bytes": 52736,
+    "sha256": "63ffc74cc14ac610b23a01a068de96fe60662cab623d43ac0180202f27bb0970"
+  },
+  {
+    "id": "sites_2025_02",
+    "file": "raw/sites_2025_02.xlsx",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/5.33_salt_historical_museum__2025-0.xlsx",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%B2%D9%88%D8%A7%D8%B1_%D8%A7%D9%84%D9%85%D9%88%D8%A7%D9%82%D8%B9_%D8%A7%D9%84%D8%A7%D8%AB%D8%B1%D9%8A%D8%A9_%D9%88_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A%D8%A9_%D9%84%D8%B9%D8%A7%D9%85_2025",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:13.057572+00:00",
+    "bytes": 13668,
+    "sha256": "63567a58c591df74d00664125a4bf48a1d91a1857156ceae863972ab5d6b5993"
+  },
+  {
+    "id": "sites_2025_03",
+    "file": "raw/sites_2025_03.xlsx",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/5.32_wadi_bin_hammad__2025-0.xlsx",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%B2%D9%88%D8%A7%D8%B1_%D8%A7%D9%84%D9%85%D9%88%D8%A7%D9%82%D8%B9_%D8%A7%D9%84%D8%A7%D8%AB%D8%B1%D9%8A%D8%A9_%D9%88_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A%D8%A9_%D9%84%D8%B9%D8%A7%D9%85_2025",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:12.871703+00:00",
+    "bytes": 13525,
+    "sha256": "fc4947b4d9d86478203efb354623fc51aa4e110862ec64598e558a9dedb88fc2"
+  },
+  {
+    "id": "sites_2025_04",
+    "file": "raw/sites_2025_04.xlsx",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/5.31_machaerus__2025-0.xlsx",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%B2%D9%88%D8%A7%D8%B1_%D8%A7%D9%84%D9%85%D9%88%D8%A7%D9%82%D8%B9_%D8%A7%D9%84%D8%A7%D8%AB%D8%B1%D9%8A%D8%A9_%D9%88_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A%D8%A9_%D9%84%D8%B9%D8%A7%D9%85_2025",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:14.605129+00:00",
+    "bytes": 13535,
+    "sha256": "d22297b62f41f9168ee6c25509038e491fca8fb380a583d5d4b19c9bc0a6250e"
+  },
+  {
+    "id": "sites_2025_05",
+    "file": "raw/sites_2025_05.xlsx",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/5.30_dar_al-saraya_museum__2025-0.xlsx",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%B2%D9%88%D8%A7%D8%B1_%D8%A7%D9%84%D9%85%D9%88%D8%A7%D9%82%D8%B9_%D8%A7%D9%84%D8%A7%D8%AB%D8%B1%D9%8A%D8%A9_%D9%88_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A%D8%A9_%D9%84%D8%B9%D8%A7%D9%85_2025",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:13.580165+00:00",
+    "bytes": 13442,
+    "sha256": "62a7969371f3d282c39cf05e10a9354a933e9a77362541cf8c96acac39b13058"
+  },
+  {
+    "id": "sites_2025_06",
+    "file": "raw/sites_2025_06.xlsx",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/5.29_hammamat_ma_in__2025.xlsx",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%B2%D9%88%D8%A7%D8%B1_%D8%A7%D9%84%D9%85%D9%88%D8%A7%D9%82%D8%B9_%D8%A7%D9%84%D8%A7%D8%AB%D8%B1%D9%8A%D8%A9_%D9%88_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A%D8%A9_%D9%84%D8%B9%D8%A7%D9%85_2025",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:13.112798+00:00",
+    "bytes": 14167,
+    "sha256": "f40ee1d71152bde9d35ef90becd57bed288bd6e630451353b14837273b004b27"
+  },
+  {
+    "id": "sites_2025_07",
+    "file": "raw/sites_2025_07.xlsx",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/5.28_iraq_al-amir__2025-0.xlsx",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%B2%D9%88%D8%A7%D8%B1_%D8%A7%D9%84%D9%85%D9%88%D8%A7%D9%82%D8%B9_%D8%A7%D9%84%D8%A7%D8%AB%D8%B1%D9%8A%D8%A9_%D9%88_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A%D8%A9_%D9%84%D8%B9%D8%A7%D9%85_2025",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:13.209249+00:00",
+    "bytes": 13536,
+    "sha256": "465cee34e050ab37142aefe80838e8ee0a432278c1912f0bab299db6e71d4b8f"
+  },
+  {
+    "id": "sites_2025_08",
+    "file": "raw/sites_2025_08.xlsx",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/5.27_the_cave_of_prophet_lot__2025-0.xlsx",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%B2%D9%88%D8%A7%D8%B1_%D8%A7%D9%84%D9%85%D9%88%D8%A7%D9%82%D8%B9_%D8%A7%D9%84%D8%A7%D8%AB%D8%B1%D9%8A%D8%A9_%D9%88_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A%D8%A9_%D9%84%D8%B9%D8%A7%D9%85_2025",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:16.215416+00:00",
+    "bytes": 13444,
+    "sha256": "a7bffbfa86c5a7bbe86af6c73f251805acb2d7bd42989e63d9d0e0816dfe7db6"
+  },
+  {
+    "id": "sites_2025_09",
+    "file": "raw/sites_2025_09.xlsx",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/5.25_alhlabat_castel__2025-0.xlsx",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%B2%D9%88%D8%A7%D8%B1_%D8%A7%D9%84%D9%85%D9%88%D8%A7%D9%82%D8%B9_%D8%A7%D9%84%D8%A7%D8%AB%D8%B1%D9%8A%D8%A9_%D9%88_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A%D8%A9_%D9%84%D8%B9%D8%A7%D9%85_2025",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:13.262671+00:00",
+    "bytes": 13481,
+    "sha256": "9635c80f78a9ba67d87a0963780f59b2f1b995e7a59a54fd2453ce74d5808e8c"
+  },
+  {
+    "id": "accommodation_2025_00",
+    "file": "raw/accommodation_2025_00.xlsx",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/%D8%AC%D8%AF%D9%88%D9%84_6.9_%D8%A5%D8%B4%D8%BA%D8%A7%D9%84_%D8%A7%D9%84%D9%81%D9%86%D8%A7%D8%AF%D9%82_%D8%AD%D8%B3%D8%A8_%D8%A7%D9%84%D9%85%D9%86%D8%B7%D9%82%D8%A9_%D8%AE%D9%84%D8%A7%D9%84_2025.xlsx",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%A7%D8%AD%D8%B5%D8%A7%D8%A1%D8%A7%D8%AA_%D9%85%D8%A4%D8%B3%D8%B3%D8%A7%D8%AA_%D8%A7%D9%84%D8%A7%D9%8A%D9%88%D8%A7%D8%A1_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A_%D9%84%D9%84%D8%B9%D8%A7%D9%85_2025",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:14.405558+00:00",
+    "bytes": 11636,
+    "sha256": "5eb173f0c98f0cbb8403dd20a9a97816eea5c4bd5ddba01e426555371e6d1578"
+  },
+  {
+    "id": "accommodation_2025_01",
+    "file": "raw/accommodation_2025_01.xlsx",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/%D8%AC%D8%AF%D9%88%D9%84_6.8_%D8%A5%D8%B4%D8%BA%D8%A7%D9%84_%D8%A7%D9%84%D9%81%D9%86%D8%A7%D8%AF%D9%82_%D8%AD%D8%B3%D8%A8_%D8%A7%D9%84%D9%85%D9%86%D8%B7%D9%82%D8%A9_%D9%88%D8%A7%D9%84%D8%AA%D8%B5%D9%86%D9%8A%D9%81__2025.xlsx",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%A7%D8%AD%D8%B5%D8%A7%D8%A1%D8%A7%D8%AA_%D9%85%D8%A4%D8%B3%D8%B3%D8%A7%D8%AA_%D8%A7%D9%84%D8%A7%D9%8A%D9%88%D8%A7%D8%A1_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A_%D9%84%D9%84%D8%B9%D8%A7%D9%85_2025",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:13.705183+00:00",
+    "bytes": 13856,
+    "sha256": "a0208bbf2109629b0e3a2bd421eda9e022dfb9d8da779864811fcba766f254fc"
+  },
+  {
+    "id": "accommodation_2025_02",
+    "file": "raw/accommodation_2025_02.xlsx",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/%D8%AC%D8%AF%D9%88%D9%84_6.7_%D8%A5%D8%B4%D8%BA%D8%A7%D9%84_%D8%A7%D9%84%D9%81%D9%86%D8%A7%D8%AF%D9%82_%D8%AD%D8%B3%D8%A8_%D8%A7%D9%84%D8%AA%D8%B5%D9%86%D9%8A%D9%81_%D8%AE%D9%84%D8%A7%D9%84_2025.xlsx",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%A7%D8%AD%D8%B5%D8%A7%D8%A1%D8%A7%D8%AA_%D9%85%D8%A4%D8%B3%D8%B3%D8%A7%D8%AA_%D8%A7%D9%84%D8%A7%D9%8A%D9%88%D8%A7%D8%A1_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A_%D9%84%D9%84%D8%B9%D8%A7%D9%85_2025",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:14.116768+00:00",
+    "bytes": 12049,
+    "sha256": "217444045ef5114f08a4c476f447a33d64538a3c428102c987c78f43bd0c8a38"
+  },
+  {
+    "id": "accommodation_2025_03",
+    "file": "raw/accommodation_2025_03.xlsx",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/%D8%AC%D8%AF%D9%88%D9%84_6.6__%D8%A7%D8%B9%D8%AF%D8%A7%D8%AF_%D8%A7%D9%84%D9%86%D8%B2%D9%84%D8%A7%D8%A1_%D9%88%D8%B9%D8%AF%D8%AF_%D8%A7%D9%84%D9%84%D9%8A%D8%A7%D9%84%D9%8A_%D8%A7%D9%84%D9%85%D9%82%D8%B6%D8%A7%D9%87_%D9%81%D9%8A_%D8%A7%D9%84%D9%81%D9%86%D8%A7%D8%AF%D9%82_%D8%A7%D9%84%D9%85%D8%B5%D9%86%D9%81%D8%A9_%D8%AD%D8%B3%D8%A8_%D8%A7%D9%84%D8%AC%D9%86%D8%B3%D9%8A%D8%A9__2025.xlsx",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%A7%D8%AD%D8%B5%D8%A7%D8%A1%D8%A7%D8%AA_%D9%85%D8%A4%D8%B3%D8%B3%D8%A7%D8%AA_%D8%A7%D9%84%D8%A7%D9%8A%D9%88%D8%A7%D8%A1_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A_%D9%84%D9%84%D8%B9%D8%A7%D9%85_2025",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:15.665050+00:00",
+    "bytes": 20441,
+    "sha256": "0bfd0d0432638f0a56e40a7a0049d33977c09697f077b0d7512667d4464e62c3"
+  },
+  {
+    "id": "accommodation_2025_04",
+    "file": "raw/accommodation_2025_04.xlsx",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/%D8%AC%D8%AF%D9%88%D9%84_6.5_%D8%B9%D8%AF%D8%AF_%D8%A7%D9%84%D8%A7%D8%B3%D8%B1%D8%A9_%D8%A7%D9%84%D9%85%D8%B4%D8%BA%D9%88%D9%84%D8%A9_%D9%88%D8%B9%D8%AF%D8%AF_%D8%A7%D9%84%D9%86%D8%B2%D9%84%D8%A7%D8%A1_%D8%AD%D8%B3%D8%A8_%D9%81%D8%A6%D8%A9_%D8%A7%D9%84%D8%AA%D8%B5%D9%86%D9%8A%D9%81_%D9%88%D9%85%D8%AC%D9%85%D9%88%D8%B9%D8%A9_%D8%A7%D9%84%D8%AF%D9%88%D9%84__2025-1.xlsx",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%A7%D8%AD%D8%B5%D8%A7%D8%A1%D8%A7%D8%AA_%D9%85%D8%A4%D8%B3%D8%B3%D8%A7%D8%AA_%D8%A7%D9%84%D8%A7%D9%8A%D9%88%D8%A7%D8%A1_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A_%D9%84%D9%84%D8%B9%D8%A7%D9%85_2025",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:14.630610+00:00",
+    "bytes": 22769,
+    "sha256": "e051fc357358e35760ccdf8cd8381d7681d2dcddef4f84e7f0889c865b6ee83a"
+  },
+  {
+    "id": "accommodation_2025_05",
+    "file": "raw/accommodation_2025_05.xls",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/%D8%AC%D8%AF%D9%88%D9%84_6.3_%D8%B9%D8%AF%D8%AF_%D8%A7%D9%84%D9%84%D9%8A%D8%A7%D9%84%D9%8A_%D9%88%D8%B9%D8%AF%D8%AF_%D9%86%D8%B2%D9%84%D8%A7%D8%A1_%D8%A7%D9%84%D9%81%D9%86%D8%A7%D8%AF%D9%82_%D8%AD%D8%B3%D8%A8_%D8%A7%D9%84%D9%85%D9%88%D9%82%D8%B9_%D9%88%D9%85%D8%AC%D9%85%D9%88%D8%B9%D8%A9_%D8%A7%D9%84%D8%AF%D9%88%D9%84_%D9%84%D8%B9%D8%A7%D9%85_2025-0.xls",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%A7%D8%AD%D8%B5%D8%A7%D8%A1%D8%A7%D8%AA_%D9%85%D8%A4%D8%B3%D8%B3%D8%A7%D8%AA_%D8%A7%D9%84%D8%A7%D9%8A%D9%88%D8%A7%D8%A1_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A_%D9%84%D9%84%D8%B9%D8%A7%D9%85_2025",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:14.748947+00:00",
+    "bytes": 38400,
+    "sha256": "75a9e30fb370bd96f4c5133592355113531047f97e62cd910e84190b356a5447"
+  },
+  {
+    "id": "accommodation_2025_06",
+    "file": "raw/accommodation_2025_06.xlsx",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/%D8%AC%D8%AF%D9%88%D9%84_6.4__%D8%B9%D8%AF%D8%AF_%D8%A7%D9%84%D9%84%D9%8A%D8%A7%D9%84%D9%8A_%D9%88%D8%B9%D8%AF%D8%AF_%D9%86%D8%B2%D9%84%D8%A7%D8%A1_%D8%A7%D9%84%D9%81%D9%86%D8%A7%D8%AF%D9%82_%D8%A7%D9%84%D9%85%D8%B5%D9%86%D9%81%D8%A9_%D8%AD%D8%B3%D8%A8_%D8%A7%D9%84%D8%A7%D8%B4%D9%87%D8%B1_%D9%88%D9%85%D8%AC%D9%85%D9%88%D8%B9%D8%A9_%D8%A7%D9%84%D8%AF%D9%88%D9%84_2025-1.xlsx",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%A7%D8%AD%D8%B5%D8%A7%D8%A1%D8%A7%D8%AA_%D9%85%D8%A4%D8%B3%D8%B3%D8%A7%D8%AA_%D8%A7%D9%84%D8%A7%D9%8A%D9%88%D8%A7%D8%A1_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A_%D9%84%D9%84%D8%B9%D8%A7%D9%85_2025",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:14.704364+00:00",
+    "bytes": 30395,
+    "sha256": "7f81eb7eefba47f94416cce8b48635493c6e4c16ed2ec35df5bc55c44a9230f2"
+  },
+  {
+    "id": "accommodation_2025_07",
+    "file": "raw/accommodation_2025_07.xls",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/%D8%AC%D8%AF%D9%88%D9%84_6.2_%D8%B9%D8%AF%D8%AF_%D8%A7%D9%84%D9%84%D9%8A%D8%A7%D9%84%D9%8A_%D9%88%D8%B9%D8%AF%D8%AF_%D9%86%D8%B2%D9%84%D8%A7%D8%A1_%D8%A7%D9%84%D9%81%D9%86%D8%A7%D8%AF%D9%82_%D8%AD%D8%B3%D8%A8_%D9%81%D8%A6%D8%A9_%D8%A7%D9%84%D8%AA%D8%B5%D9%86%D9%8A%D9%81_%D9%88%D8%A7%D9%84%D8%A7%D8%B4%D9%87%D8%B1_%D9%84%D8%B9%D8%A7%D9%85_2025-0.xls",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%A7%D8%AD%D8%B5%D8%A7%D8%A1%D8%A7%D8%AA_%D9%85%D8%A4%D8%B3%D8%B3%D8%A7%D8%AA_%D8%A7%D9%84%D8%A7%D9%8A%D9%88%D8%A7%D8%A1_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A_%D9%84%D9%84%D8%B9%D8%A7%D9%85_2025",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:15.227943+00:00",
+    "bytes": 48640,
+    "sha256": "22752260f88d1be357eb2a07f0dab956a41ebd8ad6e63c8c68439690ca5a332c"
+  },
+  {
+    "id": "accommodation_2025_08",
+    "file": "raw/accommodation_2025_08.xlsx",
+    "url": "https://www.mota.gov.jo/ebv4.0/root_storage/ar/eb_list_page/%D8%AC%D8%AF%D9%88%D9%84_6.1_%D9%85%D8%A4%D8%B4%D8%B1%D8%A7%D8%AA_%D9%85%D8%A4%D8%B3%D8%B3%D8%A7%D8%AA_%D8%A7%D9%84%D8%A7%D9%8A%D9%88%D8%A7%D8%A1_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A_2024_-_2025.xlsx",
+    "source_page": "https://www.mota.gov.jo/AR/List/%D8%A7%D8%AD%D8%B5%D8%A7%D8%A1%D8%A7%D8%AA_%D9%85%D8%A4%D8%B3%D8%B3%D8%A7%D8%AA_%D8%A7%D9%84%D8%A7%D9%8A%D9%88%D8%A7%D8%A1_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A_%D9%84%D9%84%D8%B9%D8%A7%D9%85_2025",
+    "publisher": "Jordan Ministry of Tourism and Antiquities",
+    "retrieved_at": "2026-11-07T08:37:15.810265+00:00",
+    "bytes": 19233,
+    "sha256": "73ffd695f13b80b6c3a43de146e6d17f6c5fa0f2431afa57fe0cf65f69e7a80a"
+  }
+]

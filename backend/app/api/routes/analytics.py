@@ -9,9 +9,10 @@ Endpoints:
 - GET  /api/analytics/investment-ranker — Rank all governorates by priority
 """
 
+import calendar
 from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy.orm import Session
-from sqlalchemy import func, and_
+from sqlalchemy import cast, Float, func, and_
 from app.db.database import get_db
 from app.db.models import (
     Governorate,
@@ -63,8 +64,8 @@ def compute_indicators(
         db.query(
             func.avg(OccupancyData.avg_occupancy_rate),
             func.max(OccupancyData.avg_occupancy_rate),
-            func.coalesce(func.sum(OccupancyData.total_rooms), 0),
-            func.coalesce(func.sum(OccupancyData.total_beds), 0),
+            func.coalesce(func.avg(cast(OccupancyData.total_rooms, Float)), 0),
+            func.coalesce(func.avg(cast(OccupancyData.total_beds, Float)), 0),
         )
         .filter(
             OccupancyData.governorate_id == governorate_id,
@@ -201,10 +202,10 @@ def run_forecast(
 def run_simulation(
     governorate_id: int = Query(...),
     scenario_type: str = Query(...),  # "accommodation" or "demand"
-    added_beds: int = Query(0),
-    visitor_change_pct: float = Query(0),
+    added_beds: int = Query(0, ge=0, le=5000),
+    visitor_change_pct: float = Query(0, ge=-100, le=100),
     target_months_ahead: int = Query(
-        12, description="Target future period in months (default 12)"
+        12, ge=1, le=36, description="Target future period in months (default 12)"
     ),
     db: Session = Depends(get_db),
 ):
@@ -220,7 +221,7 @@ def run_simulation(
     if not gov:
         raise HTTPException(404, "Governorate not found")
 
-    year = 2025  # latest year with data
+    year = db.query(func.max(VisitorData.year)).filter(VisitorData.governorate_id == governorate_id).scalar()
 
     # Step 1: Get historical visitor data and run forecast
     visitor_data = (
@@ -256,6 +257,7 @@ def run_simulation(
     target_idx = min(target_months_ahead - 1, len(forecast_entries) - 1)
     target_forecast = forecast_entries[target_idx]
     forecast_visitors = target_forecast["predicted"]
+    period_days = calendar.monthrange(target_forecast["year"], target_forecast["month"])[1]
 
     # Also sum forecast for annual projection
     forecast_annual = sum(f["predicted"] for f in forecast_entries)
@@ -265,8 +267,8 @@ def run_simulation(
         db.query(
             func.avg(OccupancyData.avg_occupancy_rate),
             func.max(OccupancyData.avg_occupancy_rate),
-            func.coalesce(func.sum(OccupancyData.total_rooms), 0),
-            func.coalesce(func.sum(OccupancyData.total_beds), 0),
+            func.coalesce(func.avg(cast(OccupancyData.total_rooms, Float)), 0),
+            func.coalesce(func.avg(cast(OccupancyData.total_beds, Float)), 0),
         )
         .filter(
             OccupancyData.governorate_id == governorate_id,
@@ -284,7 +286,7 @@ def run_simulation(
     # For future period, estimate occupancy based on forecasted demand
     if current_beds > 0:
         forecast_occupancy = min(
-            95, (forecast_visitors * 2.5) / (current_beds * 30) * 100
+            95, (forecast_visitors * 2.5) / (current_beds * period_days) * 100
         )
     else:
         forecast_occupancy = current_avg_occ
@@ -297,11 +299,13 @@ def run_simulation(
         peak_occupancy=min(100, forecast_occupancy * 1.3),
         visitors_prev_year=forecast_visitors,  # self-reference for stable growth
         visitors_2yr_ago=None,
+        period_days=period_days,
     )
     baseline_class = classify_capacity(forecast_baseline_indicators)
 
     # Step 5: Build forecasted baseline
     forecasted_baseline = {
+        "period_days": period_days,
         "total_rooms": current_rooms,
         "total_beds": current_beds,
         "total_visitors": forecast_visitors,
@@ -336,6 +340,9 @@ def run_simulation(
     result["simulation_time_reference"] = {
         "target_future_period": f"{target_forecast['year']}-{target_forecast['month']:02d}",
         "months_ahead": target_months_ahead,
+        "period_days": period_days,
+        "ratio_normalization": "annualized visitor rate",
+        "assumed_stay_nights": 2.5,
         "method": forecast_result.get("method", "unknown"),
     }
 
@@ -365,6 +372,7 @@ def _accommodation_scenario_forecast(
         avg_occupancy=scenario_occupancy,
         peak_occupancy=min(100, scenario_occupancy * 1.3),
         visitors_prev_year=baseline["total_visitors"],
+        period_days=baseline["period_days"],
     )
     scenario_class = classify_capacity(scenario_indicators)
 
@@ -407,6 +415,7 @@ def _demand_scenario_forecast(
         avg_occupancy=scenario_occupancy,
         peak_occupancy=min(100, scenario_occupancy * 1.3),
         visitors_prev_year=baseline["total_visitors"],
+        period_days=baseline["period_days"],
     )
     scenario_class = classify_capacity(scenario_indicators)
 
@@ -478,7 +487,7 @@ def investment_ranker(db: Session = Depends(get_db)):
         occupancy = (
             db.query(
                 func.avg(OccupancyData.avg_occupancy_rate),
-                func.coalesce(func.sum(OccupancyData.total_beds), 0),
+                func.coalesce(func.avg(cast(OccupancyData.total_beds, Float)), 0),
             )
             .filter(
                 OccupancyData.governorate_id == gov.id,
@@ -539,8 +548,8 @@ def compute_all_indicators(year: int = Query(2025), db: Session = Depends(get_db
                 db.query(
                     func.avg(OccupancyData.avg_occupancy_rate),
                     func.max(OccupancyData.avg_occupancy_rate),
-                    func.coalesce(func.sum(OccupancyData.total_rooms), 0),
-                    func.coalesce(func.sum(OccupancyData.total_beds), 0),
+                    func.coalesce(func.avg(cast(OccupancyData.total_rooms, Float)), 0),
+                    func.coalesce(func.avg(cast(OccupancyData.total_beds, Float)), 0),
                 )
                 .filter(
                     OccupancyData.governorate_id == gov.id,
@@ -619,8 +628,8 @@ def get_cluster_detail(cluster_key: str, db: Session = Depends(get_db)):
 @router.post("/simulate-national")
 def run_national_simulation(
     scenario_type: str = Query(...),
-    added_beds: int = Query(0),
-    visitor_change_pct: float = Query(0),
+    added_beds: int = Query(0, ge=0, le=5000),
+    visitor_change_pct: float = Query(0, ge=-100, le=100),
     target_months_ahead: int = Query(12),
     db: Session = Depends(get_db),
 ):
@@ -653,16 +662,22 @@ def run_national_simulation(
     occupancy = (
         db.query(
             func.avg(OccupancyData.avg_occupancy_rate),
-            func.coalesce(func.sum(OccupancyData.total_rooms), 0),
-            func.coalesce(func.sum(OccupancyData.total_beds), 0),
+            func.coalesce(func.avg(cast(OccupancyData.total_rooms, Float)), 0),
+            func.coalesce(func.avg(cast(OccupancyData.total_beds, Float)), 0),
         )
         .filter(OccupancyData.year == year)
         .first()
     )
 
+    stocks = db.query(
+        func.avg(cast(OccupancyData.total_rooms, Float)).label("rooms"),
+        func.avg(cast(OccupancyData.total_beds, Float)).label("beds"),
+    ).filter(OccupancyData.year == year).group_by(OccupancyData.governorate_id).subquery()
+    rooms, beds = db.query(func.sum(stocks.c.rooms), func.sum(stocks.c.beds)).one()
+
     baseline = {
-        "total_rooms": occupancy[1] if occupancy else 0,
-        "total_beds": occupancy[2] if occupancy else 0,
+        "total_rooms": rooms or 0,
+        "total_beds": beds or 0,
         "total_visitors": total_visitors,
         "avg_occupancy": occupancy[0] if occupancy else 0,
         "peak_occupancy": (occupancy[0] * 1.3) if occupancy else 0,
@@ -683,7 +698,9 @@ def run_national_simulation(
 
     result["simulation_time_reference"] = {
         "target": "national",
-        "months_ahead": target_months_ahead,
+        "baseline_year": year,
+        "evaluation": "historical_what_if",
+        "forecast_applied": False,
     }
 
     return result

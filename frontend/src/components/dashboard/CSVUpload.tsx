@@ -1,12 +1,13 @@
 "use client";
 
+import type { UploadResult } from "@/lib/types";
 import { useState } from "react";
 import { API_URL, THEME } from "@/lib/constants";
 
 export default function CSVUpload() {
   const [file, setFile] = useState<File | null>(null);
   const [datasetType, setDatasetType] = useState("visitors");
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<UploadResult | null>(null);
   const [uploading, setUploading] = useState(false);
 
   const handleUpload = async () => {
@@ -25,8 +26,8 @@ export default function CSVUpload() {
       });
       const data = await res.json();
       setResult(data);
-    } catch (e: any) {
-      setResult({ status: "failed", error: e.message });
+    } catch (e) {
+      setResult({ status: "failed", error: e instanceof Error ? e.message : "Upload failed" });
     }
     setUploading(false);
   };
@@ -106,7 +107,7 @@ export default function CSVUpload() {
               Processed: {result.processed} | Inserted: {result.inserted} | Skipped: {result.skipped} | Errored: {result.errored}
             </div>
           )}
-          {result.errors?.length > 0 && (
+          {result.errors && result.errors.length > 0 && (
             <div style={{ fontSize: 11, color: "#ef4444", marginTop: 6 }}>
               {result.errors.slice(0, 5).map((e: string, i: number) => (
                 <div key={i}>• {e}</div>

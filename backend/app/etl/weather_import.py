@@ -34,17 +34,14 @@ GOVERNORATE_COORDS = {
     "AQAB": {"lat": 29.5321, "lng": 35.0063, "name": "Aqaba"},
 }
 
-OUTPUT_DIR = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-    "data",
-    "weather",
-)
+from app.paths import DATA_DIR
+OUTPUT_DIR = str(DATA_DIR / "weather")
 
 
 def fetch_weather(gov_code, start_date="2020-01-01", end_date=None):
     """
     Fetch monthly historical weather for a governorate from Open-Meteo.
-    Free API, no key needed.
+    Unauthenticated research endpoint. Commercial service use requires an appropriate plan.
     """
     if end_date is None:
         end_date = datetime.now().strftime("%Y-%m-%d")
@@ -59,7 +56,7 @@ def fetch_weather(gov_code, start_date="2020-01-01", end_date=None):
         "longitude": coords["lng"],
         "start_date": start_date,
         "end_date": end_date,
-        "monthly": "temperature_2m_mean,temperature_2m_max,temperature_2m_min,precipitation_sum,sunshine_duration",
+        "daily": "temperature_2m_mean,temperature_2m_max,temperature_2m_min,precipitation_sum,sunshine_duration",
         "timezone": "Asia/Amman",
     }
 
@@ -68,22 +65,21 @@ def fetch_weather(gov_code, start_date="2020-01-01", end_date=None):
         resp.raise_for_status()
         data = resp.json()
 
-        if "monthly" not in data:
-            return None
-
-        df = pd.DataFrame(
-            {
-                "date": data["monthly"]["time"],
-                "temp_mean": data["monthly"].get("temperature_2m_mean", []),
-                "temp_max": data["monthly"].get("temperature_2m_max", []),
-                "temp_min": data["monthly"].get("temperature_2m_min", []),
-                "precipitation_mm": data["monthly"].get("precipitation_sum", []),
-                "sunshine_hours": [
-                    s / 3600 if s else 0
-                    for s in data["monthly"].get("sunshine_duration", [])
-                ],
-            }
-        )
+        daily = data.get("daily")
+        if not daily or not daily.get("time"):
+            raise ValueError("Weather API returned no daily observations")
+        df = pd.DataFrame(daily).rename(columns={
+            "time": "date", "temperature_2m_mean": "temp_mean",
+            "temperature_2m_max": "temp_max", "temperature_2m_min": "temp_min",
+            "precipitation_sum": "precipitation_mm", "sunshine_duration": "sunshine_seconds",
+        })
+        df["date"] = pd.to_datetime(df["date"])
+        df = df.set_index("date").resample("MS").agg({
+            "temp_mean": "mean", "temp_max": "max", "temp_min": "min",
+            "precipitation_mm": lambda x: x.sum(min_count=1),
+            "sunshine_seconds": lambda x: x.sum(min_count=1),
+        }).reset_index()
+        df["sunshine_hours"] = df.pop("sunshine_seconds") / 3600
 
         df["governorate_code"] = gov_code
         df["year"] = pd.to_datetime(df["date"]).dt.year

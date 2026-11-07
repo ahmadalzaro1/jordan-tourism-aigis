@@ -40,7 +40,7 @@ def get_national_summary(
     )
     if year:
         vq = vq.filter(VisitorData.year == year)
-    if gov_filter:
+    if gov_filter is not None:
         vq = vq.filter(VisitorData.governorate_id.in_(gov_filter))
     visitors = vq.first()
 
@@ -50,7 +50,7 @@ def get_national_summary(
         func.coalesce(func.sum(Hotel.total_beds), 0),
         func.count(Hotel.id),
     )
-    if gov_filter:
+    if gov_filter is not None:
         rbq = rbq.filter(Hotel.governorate_id.in_(gov_filter))
     rooms_beds = rbq.first()
 
@@ -58,7 +58,7 @@ def get_national_summary(
     oq = db.query(func.coalesce(func.avg(OccupancyData.avg_occupancy_rate), 0))
     if year:
         oq = oq.filter(OccupancyData.year == year)
-    if gov_filter:
+    if gov_filter is not None:
         oq = oq.filter(OccupancyData.governorate_id.in_(gov_filter))
     avg_occ = oq.scalar()
 
@@ -68,7 +68,7 @@ def get_national_summary(
     )
     if year:
         pq = pq.filter(CapacityIndicator.year == year)
-    if gov_filter:
+    if gov_filter is not None:
         pq = pq.filter(CapacityIndicator.governorate_id.in_(gov_filter))
     priority_zones = pq.scalar() or 0
 

@@ -1,87 +1,37 @@
+"""Initialize tables, seed bundled demo data, and create Superset views.
+Existing bundled observations are preserved unless --generate-demo is requested.
 """
-Complete setup: generate sample data, seed database, create views.
-Run: python -m backend.scripts.setup_database
-"""
-
-import os
+import argparse
 import sys
-import subprocess
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from app.paths import DATA_DIR
+from app.db.database import engine
+from sqlalchemy import text
+from scripts.seed_database import seed
+from app.official import official_mode
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-
-def main():
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-    # Step 1: Generate sample data
-    print("=" * 50)
-    print("Step 1: Generating sample data...")
-    print("=" * 50)
-    from scripts.generate_sample_data import (
-        generate_visitors_csv,
-        generate_occupancy_csv,
-        generate_hotels_csv,
-        generate_sites_csv,
-        generate_site_visits_csv,
-    )
-
-    sample_dir = os.path.join(base_dir, "data", "sample")
-    os.makedirs(sample_dir, exist_ok=True)
-
-    generate_visitors_csv(sample_dir)
-    generate_occupancy_csv(sample_dir)
-    generate_hotels_csv(sample_dir)
-    generate_sites_csv(sample_dir)
-    generate_site_visits_csv(sample_dir)
-    print("Sample data generated.\n")
-
-    # Step 2: Seed database
-    print("=" * 50)
-    print("Step 2: Seeding database...")
-    print("=" * 50)
-    from scripts.seed_database import seed
-
+def main(generate_demo=False):
+    if generate_demo and official_mode():
+        raise ValueError("Set DATA_MODE=demo explicitly before generating demonstration observations")
+    with engine.begin() as connection:
+        connection.execute(text("CREATE EXTENSION IF NOT EXISTS postgis"))
+    if generate_demo:
+        from scripts.generate_sample_data import generate_visitors_csv, generate_occupancy_csv, generate_hotels_csv, generate_sites_csv, generate_site_visits_csv
+        sample_dir = DATA_DIR / "sample"
+        sample_dir.mkdir(parents=True, exist_ok=True)
+        for generator in [generate_visitors_csv, generate_occupancy_csv, generate_hotels_csv, generate_sites_csv, generate_site_visits_csv]:
+            generator(str(sample_dir))
     seed()
-    print("Database seeded.\n")
-
-    # Step 3: Create SQL views
-    print("=" * 50)
-    print("Step 3: Creating SQL views...")
-    print("=" * 50)
-
-    from sqlalchemy import create_engine, text
-
-    db_url = os.environ.get(
-        "DATABASE_URL", "postgresql://tourism:tourism@localhost:5433/tourism_gis"
-    )
-    engine = create_engine(db_url)
-
-    views_sql_path = os.path.join(base_dir, "data", "schema", "views.sql")
-    with open(views_sql_path, "r") as f:
-        views_sql = f.read()
-
-    with engine.connect() as conn:
-        for statement in views_sql.split(";"):
-            statement = statement.strip()
-            if statement and not statement.startswith("--"):
-                try:
-                    conn.execute(text(statement))
-                    conn.commit()
-                except Exception as e:
-                    print(f"  Warning: {e}")
-
-    print("SQL views created.\n")
-
-    print("=" * 50)
-    print("Setup complete!")
-    print("=" * 50)
-    print("\nServices:")
-    print("  - Database:  localhost:5433 (PostgreSQL/PostGIS)")
-    print("  - Backend:   http://localhost:8000 (FastAPI)")
-    print("  - Frontend:  http://localhost:3000 (Next.js)")
-    print("  - Superset:  http://localhost:8088 (Apache Superset)")
-    print("\nSuperset login: admin / admin")
-
+    sql = (DATA_DIR / "schema/views.sql").read_text()
+    with engine.begin() as connection:
+        for statement in sql.split(";"):
+            if statement.strip():
+                connection.execute(text(statement))
+    print("Database initialized in " + ("official mode: reviewed locations, no generated observations." if official_mode() else "demo mode: generated observations and legacy SQL views."))
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--generate-demo", action="store_true", help="Explicitly regenerate demo CSVs before seeding")
+    main(parser.parse_args().generate_demo)

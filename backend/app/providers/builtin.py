@@ -8,12 +8,7 @@ import pandas as pd
 import os
 from app.providers.base import TourismProvider, ProviderRegistry
 
-DATA_DIR = os.path.join(
-    os.path.dirname(
-        os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    ),
-    "data",
-)
+from app.paths import DATA_DIR
 
 
 class MoTAProvider(TourismProvider):
@@ -21,10 +16,13 @@ class MoTAProvider(TourismProvider):
 
     name = "mota"
     description = (
-        "Ministry of Tourism and Antiquities — visitor counts, occupancy, sites, hotels"
+        "Generated demo CSVs shaped for MoTA tourism statistics; not official observations"
     )
 
     def _load(self, filename):
+        from app.official import official_mode
+        if official_mode():
+            raise ValueError("Demo provider disabled in official mode. Use app.official.overview for published national and reporting-region data.")
         path = os.path.join(DATA_DIR, "sample", filename)
         return pd.read_csv(path) if os.path.exists(path) else pd.DataFrame()
 
@@ -78,10 +76,12 @@ class OpenMeteoProvider(TourismProvider):
     description = "Open-Meteo — temperature, rainfall, sunshine hours"
 
     def get_weather(self, governorate=None, year=None, month=None):
-        path = os.path.join(DATA_DIR, "weather", "all_governorates_weather.csv")
+        path = os.path.join(DATA_DIR, "weather", "jordan_weather_monthly.csv")
+        if not os.path.exists(path):
+            path = os.path.join(DATA_DIR, "weather", "all_governorates_weather.csv")
         if not os.path.exists(path):
             return pd.DataFrame()
-        df = pd.read_csv(path).rename(columns={"gov": "governorate_code"})
+        df = pd.read_csv(path).rename(columns={"gov": "governorate_code", "temp": "temp_mean", "rain": "precipitation_mm"})
         if governorate:
             df = df[df["governorate_code"] == governorate]
         if year:
@@ -200,6 +200,8 @@ class ConflictProvider(TourismProvider):
         if not os.path.exists(path):
             return pd.DataFrame()
         df = pd.read_csv(path)
+        if status and "status" in df:
+            df = df[df["status"] == status]
         return df
 
     def get_visitors(self, **kwargs):
