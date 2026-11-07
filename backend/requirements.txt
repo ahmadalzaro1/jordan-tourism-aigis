@@ -11,6 +11,11 @@ pydantic==2.10.3
 pydantic-settings==2.7.0
 python-multipart==0.0.18
 prophet==1.1.6
+cmdstanpy==1.2.5
 statsmodels==0.14.4
 shapely==2.0.6
 reportlab==4.4.0
+
+requests==2.32.5
+pyarrow==23.0.1
+chardet==5.2.0

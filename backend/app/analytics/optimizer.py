@@ -15,8 +15,7 @@ import json
 import os
 import time
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DATA_DIR = os.path.join(BASE_DIR, "data")
+from app.paths import DATA_DIR
 CACHE_DIR = os.path.join(DATA_DIR, ".cache")
 
 os.makedirs(CACHE_DIR, exist_ok=True)

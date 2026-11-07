@@ -102,38 +102,30 @@ JOIN governorates g ON g.id = ci.governorate_id;
 -- View: National summary by year
 -- ==========================================
 CREATE OR REPLACE VIEW v_national_summary AS
-SELECT
-    v.year,
-    SUM(v.total_visitors) AS total_visitors,
-    SUM(v.international_visitors) AS international_visitors,
-    SUM(v.domestic_visitors) AS domestic_visitors,
-    AVG(o.avg_occupancy_rate) AS avg_occupancy_rate,
-    SUM(o.total_rooms) AS total_rooms,
-    SUM(o.total_beds) AS total_beds,
-    COUNT(DISTINCT h.id) AS total_hotels
-FROM visitor_data v
-LEFT JOIN occupancy_data o ON o.governorate_id = v.governorate_id AND o.year = v.year AND o.month = v.month
-LEFT JOIN hotels h ON h.governorate_id = v.governorate_id
-GROUP BY v.year;
+WITH visitors AS (
+ SELECT year, SUM(total_visitors) AS total_visitors,
+ SUM(international_visitors) AS international_visitors,
+ SUM(domestic_visitors) AS domestic_visitors FROM visitor_data GROUP BY year
+), occupancy AS (
+ SELECT year, AVG(avg_occupancy_rate) AS avg_occupancy_rate FROM occupancy_data GROUP BY year
+), hotels_summary AS (
+ SELECT COALESCE(SUM(total_rooms),0) AS total_rooms,
+ COALESCE(SUM(total_beds),0) AS total_beds, COUNT(*) AS total_hotels FROM hotels
+)
+SELECT v.*, o.avg_occupancy_rate, h.total_rooms, h.total_beds, h.total_hotels
+FROM visitors v LEFT JOIN occupancy o USING(year) CROSS JOIN hotels_summary h;
 
 -- ==========================================
 -- View: Governorate comparison (for bar charts)
 -- ==========================================
 CREATE OR REPLACE VIEW v_governorate_comparison AS
-SELECT
-    g.name_en AS governorate,
-    g.code,
-    g.area_km2,
-    g.population,
-    COALESCE(SUM(v.total_visitors), 0) AS total_visitors,
-    COALESCE(AVG(o.avg_occupancy_rate), 0) AS avg_occupancy_rate,
-    COALESCE(SUM(o.total_rooms), 0) AS total_rooms,
-    COALESCE(SUM(o.total_beds), 0) AS total_beds,
-    COUNT(DISTINCT h.id) AS hotel_count,
-    COUNT(DISTINCT ts.id) AS site_count
+SELECT g.name_en AS governorate, g.code, g.area_km2, g.population,
+ COALESCE(v.total_visitors,0) AS total_visitors,
+ COALESCE(o.avg_occupancy_rate,0) AS avg_occupancy_rate,
+ COALESCE(h.total_rooms,0) AS total_rooms, COALESCE(h.total_beds,0) AS total_beds,
+ COALESCE(h.hotel_count,0) AS hotel_count, COALESCE(ts.site_count,0) AS site_count
 FROM governorates g
-LEFT JOIN visitor_data v ON v.governorate_id = g.id AND v.year = 2025
-LEFT JOIN occupancy_data o ON o.governorate_id = g.id AND o.year = 2025
-LEFT JOIN hotels h ON h.governorate_id = g.id
-LEFT JOIN tourism_sites ts ON ts.governorate_id = g.id
-GROUP BY g.id, g.name_en, g.code, g.area_km2, g.population;
+LEFT JOIN (SELECT governorate_id,SUM(total_visitors) AS total_visitors FROM visitor_data WHERE year=2025 GROUP BY governorate_id) v ON v.governorate_id=g.id
+LEFT JOIN (SELECT governorate_id,AVG(avg_occupancy_rate) AS avg_occupancy_rate FROM occupancy_data WHERE year=2025 GROUP BY governorate_id) o ON o.governorate_id=g.id
+LEFT JOIN (SELECT governorate_id,SUM(total_rooms) AS total_rooms,SUM(total_beds) AS total_beds,COUNT(*) AS hotel_count FROM hotels GROUP BY governorate_id) h ON h.governorate_id=g.id
+LEFT JOIN (SELECT governorate_id,COUNT(*) AS site_count FROM tourism_sites GROUP BY governorate_id) ts ON ts.governorate_id=g.id;

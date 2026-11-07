@@ -33,11 +33,8 @@ RAMADAN_DURATION = 30  # days
 # Eid al-Adha = ~70 days after Eid al-Fitr (10th Dhul Hijjah)
 EID_ADHA_OFFSET = 70  # days after Eid al-Fitr
 
-OUTPUT_DIR = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-    "data",
-    "calendar",
-)
+from app.paths import DATA_DIR
+OUTPUT_DIR = str(DATA_DIR / "calendar")
 
 
 def generate_islamic_calendar(years=range(2020, 2031)):

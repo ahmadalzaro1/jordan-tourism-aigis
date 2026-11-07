@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { fetchInvestmentRanker } from "@/lib/api";
-import { THEME, CAPACITY_COLORS } from "@/lib/constants";
+import { THEME } from "@/lib/constants";
 
 interface RankerResult {
   year: number;

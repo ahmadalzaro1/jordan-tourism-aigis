@@ -34,3 +34,8 @@ data/osm/osm_historic_sites.csv
 # Temp files
 /tmp/
 *.log
+
+# Generated from the installed MapLibre version
+frontend/public/maplibre-gl-worker.mjs
+backend/data/.cache/
+output/

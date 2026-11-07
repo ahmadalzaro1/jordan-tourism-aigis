@@ -9,7 +9,7 @@ import os
 SECRET_KEY = os.environ.get("SUPERSET_SECRET_KEY", "jordan-tourism-aigis-secret-key")
 
 # Database connection for Superset's own metadata
-SQLALCHEMY_DATABASE_URI = "postgresql://tourism:tourism@db:5432/tourism_gis"
+SQLALCHEMY_DATABASE_URI = os.environ.get("SUPERSET_DATABASE_URI", "sqlite:////app/superset_home/superset.db")
 
 # Redis for caching
 REDIS_HOST = os.environ.get("REDIS_HOST", "redis")

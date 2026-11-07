@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 
 from app.config import get_settings
 from app.db.database import engine, Base
-from app.api.routes import data, geo, etl, summary, analytics, export, research, actions
+from app.api.routes import data, geo, etl, summary, analytics, export, research, actions, sources
 
 
 @asynccontextmanager
@@ -31,6 +31,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(sources.router, prefix="/api/sources", tags=["sources"])
 app.include_router(data.router, prefix="/api/tourism", tags=["tourism"])
 app.include_router(geo.router, prefix="/api/geo", tags=["geo"])
 app.include_router(etl.router, prefix="/api/etl", tags=["etl"])

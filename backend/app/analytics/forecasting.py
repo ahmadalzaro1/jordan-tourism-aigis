@@ -15,6 +15,7 @@ Methods:
 
 import pandas as pd
 import numpy as np
+import logging
 from typing import Optional
 from statsmodels.tsa.arima.model import ARIMA as StatsARIMA
 from statsmodels.tsa.seasonal import seasonal_decompose
@@ -30,16 +31,51 @@ def prepare_monthly_series(data: list) -> pd.DataFrame:
     Returns:
         DataFrame with datetime index and 'y' column
     """
+    if not data:
+        raise ValueError("Monthly series cannot be empty")
     df = pd.DataFrame(data)
     df["ds"] = pd.to_datetime(
         df.apply(lambda r: f"{int(r['year'])}-{int(r['month']):02d}-01", axis=1)
     )
     df["y"] = df["total"].astype(float)
     df = df.sort_values("ds").reset_index(drop=True)
-    return df[["ds", "y"]]
+    return _validate_series(df[["ds", "y"]])
 
 
-def forecast_prophet(df: pd.DataFrame, horizon_months: int = 12, **kwargs) -> dict:
+def _validate_series(df):
+    df = df[["ds", "y"]].copy().sort_values("ds").reset_index(drop=True)
+    df["ds"] = pd.to_datetime(df["ds"])
+    if len(df) < 2 or df["ds"].duplicated().any():
+        raise ValueError("At least two distinct monthly observations are required")
+    if not np.isfinite(df["y"].astype(float)).all() or (df["y"] < 0).any():
+        raise ValueError("Visitor values must be finite and nonnegative")
+    if not df["ds"].equals(pd.Series(pd.date_range(df.ds.iloc[0], periods=len(df), freq="MS"))):
+        raise ValueError("Monthly observations must be contiguous month starts")
+    return df
+
+
+def _holdout_metrics(df, forecast_func, **kwargs):
+    """Fit only on earlier observations; evaluate against unseen final months."""
+    n = min(12, len(df) // 3)
+    if n < 1 or len(df) - n < 6:
+        return {"mape": None, "mae": None, "rmse": None, "backtest_months": 0,
+                "evaluation": "insufficient_history"}
+    train, test = df.iloc[:-n], df.iloc[-n:]
+    result = forecast_func(train, n, _evaluate=False, **kwargs)
+    expected_dates = test.ds.dt.strftime("%Y-%m-%d").tolist()
+    if [f["date"] for f in result["forecast"]] != expected_dates:
+        raise ValueError("Holdout forecast dates do not match observations")
+    actual = test.y.to_numpy()
+    predicted = [f["predicted"] for f in result["forecast"]]
+    return {"mape": round(_mape(actual, predicted), 2) if np.any(actual != 0) else None,
+            "mae": round(_mae(actual, predicted), 2),
+            "rmse": round(_rmse(actual, predicted), 2),
+            "backtest_months": n, "evaluation": "temporal_holdout",
+            "train_end": train.ds.iloc[-1].strftime("%Y-%m-%d"),
+            "test_start": expected_dates[0], "test_end": expected_dates[-1]}
+
+
+def forecast_prophet(df: pd.DataFrame, horizon_months: int = 12, _evaluate: bool = True, **kwargs) -> dict:
     """
     Forecast using Facebook Prophet.
 
@@ -50,18 +86,19 @@ def forecast_prophet(df: pd.DataFrame, horizon_months: int = 12, **kwargs) -> di
     Returns:
         dict with 'forecast', 'history', 'metrics'
     """
+    df = _validate_series(df)
+    if not 1 <= horizon_months <= 36:
+        raise ValueError("Forecast horizon must be between 1 and 36 months")
     try:
         from prophet import Prophet
     except ImportError:
         # Fallback to ARIMA if Prophet not installed
-        return forecast_arima(df, horizon_months)
+        return forecast_arima(df, horizon_months, _evaluate=_evaluate)
 
-    model = Prophet(
-        yearly_seasonality=True,
-        weekly_seasonality=False,
-        daily_seasonality=False,
-        changepoint_prior_scale=0.05,
-    )
+    options = dict(yearly_seasonality=True, weekly_seasonality=False,
+                   daily_seasonality=False, changepoint_prior_scale=0.05)
+    options.update(kwargs)
+    model = Prophet(**options)
 
     model.fit(df)
 
@@ -87,7 +124,7 @@ def forecast_prophet(df: pd.DataFrame, horizon_months: int = 12, **kwargs) -> di
         )
 
     # Compute back-test metrics (last 12 months if available)
-    metrics = _compute_backtest_metrics(df, prediction, min(12, len(df) // 3))
+    metrics = _holdout_metrics(df, forecast_prophet, **kwargs) if _evaluate else {}
 
     return {
         "method": "prophet",
@@ -101,7 +138,7 @@ def forecast_prophet(df: pd.DataFrame, horizon_months: int = 12, **kwargs) -> di
     }
 
 
-def forecast_arima(df: pd.DataFrame, horizon_months: int = 12, order=(1, 1, 1)) -> dict:
+def forecast_arima(df: pd.DataFrame, horizon_months: int = 12, order=(1, 1, 1), _evaluate: bool = True) -> dict:
     """
     Forecast using ARIMA.
 
@@ -113,6 +150,9 @@ def forecast_arima(df: pd.DataFrame, horizon_months: int = 12, order=(1, 1, 1)) 
     Returns:
         dict with 'forecast', 'history', 'metrics'
     """
+    df = _validate_series(df)
+    if not 1 <= horizon_months <= 36:
+        raise ValueError("Forecast horizon must be between 1 and 36 months")
     ts = df.set_index("ds")["y"]
 
     # Fit ARIMA
@@ -138,26 +178,14 @@ def forecast_arima(df: pd.DataFrame, horizon_months: int = 12, order=(1, 1, 1)) 
             }
         )
 
-    # Back-test metrics
-    in_sample_pred = fitted.predict(start=0, end=len(ts) - 1)
-    actual = ts.values
-    predicted_hist = in_sample_pred.values
-
-    mape = _mape(actual, predicted_hist)
-    mae = _mae(actual, predicted_hist)
-    rmse = _rmse(actual, predicted_hist)
+    metrics = _holdout_metrics(df, forecast_arima, order=order) if _evaluate else {}
 
     return {
         "method": "arima",
         "order": list(order),
         "horizon_months": horizon_months,
         "forecast": forecast,
-        "metrics": {
-            "mape": round(mape, 2),
-            "mae": round(mae, 2),
-            "rmse": round(rmse, 2),
-            "backtest_months": len(ts),
-        },
+        "metrics": metrics,
         "history": [
             {"date": d.strftime("%Y-%m-%d"), "actual": round(v)} for d, v in ts.items()
         ],
@@ -172,31 +200,14 @@ def forecast_best(df: pd.DataFrame, horizon_months: int = 12) -> dict:
         result = forecast_prophet(df, horizon_months)
         if result.get("forecast"):
             return result
-    except Exception:
-        pass
+    except Exception as exc:
+        logging.getLogger(__name__).warning("Prophet failed; falling back to ARIMA: %s", exc)
+        result = forecast_arima(df, horizon_months)
+        result["fallback_from"] = "prophet"
+        result["warning"] = "Prophet unavailable; ARIMA forecast and evaluation returned"
+        return result
 
     return forecast_arima(df, horizon_months)
-
-
-def _compute_backtest_metrics(
-    df: pd.DataFrame, prediction: pd.DataFrame, n_months: int
-) -> dict:
-    """Compute back-test accuracy metrics for the last n_months."""
-    if len(df) < n_months + 6:
-        return {"mape": None, "mae": None, "rmse": None, "backtest_months": 0}
-
-    history = df.tail(n_months)
-    pred = prediction.iloc[len(df) - n_months : len(df)]
-
-    actual = history["y"].values
-    predicted = pred["yhat"].values[: len(actual)]
-
-    return {
-        "mape": round(_mape(actual, predicted), 2),
-        "mae": round(_mae(actual, predicted), 2),
-        "rmse": round(_rmse(actual, predicted), 2),
-        "backtest_months": len(actual),
-    }
 
 
 def _mape(actual, predicted):
@@ -204,7 +215,7 @@ def _mape(actual, predicted):
     actual, predicted = np.array(actual, dtype=float), np.array(predicted, dtype=float)
     mask = actual != 0
     if mask.sum() == 0:
-        return 0.0
+        return None
     return np.mean(np.abs((actual[mask] - predicted[mask]) / actual[mask])) * 100
 
 

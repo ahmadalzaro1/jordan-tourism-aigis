@@ -1,12 +1,15 @@
 "use client";
 
+import type { Cluster } from "@/lib/types";
 import { useState, useEffect } from "react";
 import { API_URL, THEME } from "@/lib/constants";
 
 export default function ResearchPanel() {
-  const [clusters, setClusters] = useState<any>(null);
+  const [sources, setSources] = useState<{id: string; rows?: number; kind: string; available: boolean}[]>([]);
+  const [clusters, setClusters] = useState<{ clusters: Cluster[] } | null>(null);
 
   useEffect(() => {
+    fetch(`${API_URL}/api/sources`).then(r => r.json()).then(data => setSources(data.sources)).catch(console.error);
     fetch(`${API_URL}/api/analytics/clusters`)
       .then(r => r.json())
       .then(setClusters)
@@ -60,31 +63,9 @@ export default function ResearchPanel() {
   ];
 
   const keyFindings = [
-    { category: "Supply→Demand", finding: "Hotel rooms predict visitors (r=+0.812)", impact: "high" },
-    { category: "Growth→Occupancy", finding: "ALL 12 governorates: growth predicts next month occupancy (r=0.63-0.82)", impact: "high" },
-    { category: "Complementarity", finding: "Governorates complement (r=+0.82-0.90) — tourists visit multiple", impact: "high" },
-    { category: "Forecast", finding: "Prophet achieves 4.89% MAPE (target: ≤20%)", impact: "high" },
-    { category: "Accessibility", finding: "Amman extracts 7x more visitors/access-point than Zarqa", impact: "medium" },
-    { category: "Tourism Dependency", finding: "Petra 41%, Aqaba 26% — extreme dependency", impact: "medium" },
-    { category: "Recovery", finding: "Summer drops: 10 months. Winter drops: 3 months", impact: "medium" },
-    { category: "Conflicts", finding: "43% of tourism is conflict-vulnerable", impact: "medium" },
-    { category: "Seasonality", finding: "62-77% amplitude everywhere. Peak always April", impact: "medium" },
-    { category: "Neighbor Spillover", finding: "Dead Sea→Amman (r=+0.546), Aqaba→Petra (r=+0.424)", impact: "medium" },
-    { category: "Economic", finding: "GDP growth predicts next year tourism (r=+0.841)", impact: "medium" },
-    { category: "Diversification", finding: "Aqaba most diverse (HHI=0.306), Petra least (0.867)", impact: "low" },
-  ];
-
-  const dataSources = [
-    { name: "Tourism (MoTA)", records: "7,680", status: "sample" },
-    { name: "OpenStreetMap", records: "15,224", status: "live" },
-    { name: "Weather (Open-Meteo)", records: "936", status: "live" },
-    { name: "Islamic Calendar", records: "108", status: "computed" },
-    { name: "World Bank Economics", records: "7 indicators × 10yr", status: "live" },
-    { name: "Wikipedia Views", records: "432", status: "live" },
-    { name: "Airport Passengers", records: "72", status: "estimated" },
-    { name: "Regional Conflicts", records: "21 events", status: "manual" },
-    { name: "Source Markets", records: "12 markets", status: "manual" },
-    { name: "Transport Network", records: "12 governorates", status: "computed" },
+    {category: "Forecasting", finding: "Forecast errors use a temporal holdout. Current tourism observations are generated examples.", impact: "medium"},
+    {category: "Capacity", finding: "Accommodation is a stock: annual indicators use average monthly rooms and beds, not their sum.", impact: "medium"},
+    {category: "Relationships", finding: "Correlations in demo data are exploratory. They do not establish what causes tourism growth.", impact: "medium"},
   ];
 
   return (
@@ -96,9 +77,9 @@ export default function ResearchPanel() {
       {/* Stats */}
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, marginBottom: 16 }}>
         {[
-          { label: "Functions", value: "70" },
-          { label: "Data Files", value: "55" },
-          { label: "Findings", value: "100+" },
+          { label: "Tourism", value: "Demo" },
+          { label: "Sources", value: String(sources.length) },
+          { label: "Feeds", value: "Cached" },
         ].map((stat) => (
           <div key={stat.label} style={{
             backgroundColor: THEME.surfaceAlt, border: `1px solid ${THEME.border}`,
@@ -110,10 +91,10 @@ export default function ResearchPanel() {
         ))}
       </div>
 
-      {/* Key Findings */}
+      {/* Sample-data observations */}
       <div style={{ marginBottom: 16 }}>
         <h3 style={{ fontSize: 11, color: THEME.textMuted, textTransform: "uppercase", margin: "0 0 8px 0" }}>
-          Key Findings
+          Sample-data observations
         </h3>
         {keyFindings.map((f, i) => (
           <div key={i} style={{
@@ -145,7 +126,7 @@ export default function ResearchPanel() {
           }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
               <span style={{ fontSize: 12, fontWeight: 600, color: THEME.text }}>{mod.name}</span>
-              <span style={{ fontSize: 11, color: THEME.accent }}>{mod.count} functions</span>
+              <span style={{ fontSize: 11, color: THEME.accent }}>{mod.functions.length} listed functions</span>
             </div>
             <div style={{ fontSize: 9, color: THEME.textMuted, lineHeight: 1.4 }}>
               {mod.functions.join(", ")}
@@ -159,13 +140,13 @@ export default function ResearchPanel() {
         <h3 style={{ fontSize: 11, color: THEME.textMuted, textTransform: "uppercase", margin: "0 0 8px 0" }}>
           Data Sources
         </h3>
-        {dataSources.map((ds) => (
-          <div key={ds.name} style={{
+        {sources.map((ds) => (
+          <div key={ds.id} style={{
             display: "flex", justifyContent: "space-between", padding: "4px 0",
             borderBottom: `1px solid ${THEME.border}`, fontSize: 11,
           }}>
-            <span style={{ color: THEME.text }}>{ds.name}</span>
-            <span style={{ color: THEME.textMuted }}>{ds.records}</span>
+            <span style={{ color: THEME.text }}>{ds.id}</span>
+            <span style={{ color: THEME.textMuted }}>{ds.rows ?? 0} rows · {ds.kind.replaceAll("_", " ")}</span>
           </div>
         ))}
       </div>
@@ -176,7 +157,7 @@ export default function ResearchPanel() {
           <h3 style={{ fontSize: 11, color: THEME.textMuted, textTransform: "uppercase", margin: "0 0 8px 0" }}>
             Tourism Clusters
           </h3>
-          {clusters.clusters.map((c: any) => (
+          {clusters.clusters.map((c) => (
             <div key={c.key} style={{
               backgroundColor: THEME.surfaceAlt, border: `1px solid ${THEME.border}`,
               borderRadius: 6, padding: "8px 10px", marginBottom: 4,

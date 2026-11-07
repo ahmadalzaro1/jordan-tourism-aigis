@@ -97,6 +97,7 @@ def capacity_adequacy_index(
     total_visitors: int,
     avg_stay_nights: float = 2.5,
     occupancy_target: float = 0.75,
+    period_days: int = 365,
 ) -> Optional[float]:
     """
     Capacity Adequacy Index (CAI).
@@ -105,7 +106,7 @@ def capacity_adequacy_index(
 
     Formula:
       demand_nights = total_visitors * avg_stay_nights
-      supply_nights = total_beds * 365 * occupancy_target (annual)
+      supply_nights = total_beds * period_days * occupancy_target (same observation period)
       CAI = supply_nights / demand_nights
 
     Interpretation:
@@ -117,7 +118,7 @@ def capacity_adequacy_index(
         return None
 
     demand_nights = total_visitors * avg_stay_nights
-    supply_nights = total_beds * 365 * occupancy_target
+    supply_nights = total_beds * period_days * occupancy_target
 
     if demand_nights <= 0:
         return None
@@ -133,24 +134,29 @@ def compute_indicators_for_period(
     peak_occupancy: float = None,
     visitors_prev_year: int = None,
     visitors_2yr_ago: int = None,
+    period_days: int = 365,
 ) -> dict:
     """
     Compute all indicators for a single governorate/period combination.
     Returns a dict ready for database storage.
     """
+    if period_days <= 0:
+        raise ValueError("period_days must be positive")
+    # Fixed classification thresholds are annual; normalize shorter periods.
+    annualized_visitors = total_visitors * 365 / period_days
     if peak_occupancy is None:
         peak_occupancy = min(avg_occupancy * 1.3, 100)
 
     return {
-        "rooms_per_1000_visitors": rooms_per_1000_visitors(total_rooms, total_visitors),
-        "beds_per_1000_visitors": beds_per_1000_visitors(total_beds, total_visitors),
+        "rooms_per_1000_visitors": rooms_per_1000_visitors(total_rooms, annualized_visitors),
+        "beds_per_1000_visitors": beds_per_1000_visitors(total_beds, annualized_visitors),
         "occupancy_pressure_index": occupancy_pressure_index(
             avg_occupancy, peak_occupancy
         ),
         "growth_pressure_index": growth_pressure_index(
             total_visitors, visitors_prev_year, visitors_2yr_ago
         ),
-        "capacity_adequacy_index": capacity_adequacy_index(total_beds, total_visitors),
+        "capacity_adequacy_index": capacity_adequacy_index(total_beds, total_visitors, period_days=period_days),
     }
 
 

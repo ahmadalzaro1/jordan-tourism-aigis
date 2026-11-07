@@ -18,11 +18,8 @@ import requests
 import pandas as pd
 import os
 
-OUTPUT_DIR = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-    "data",
-    "economic",
-)
+from app.paths import DATA_DIR
+OUTPUT_DIR = str(DATA_DIR / "economic")
 
 # World Bank indicator codes
 INDICATORS = {

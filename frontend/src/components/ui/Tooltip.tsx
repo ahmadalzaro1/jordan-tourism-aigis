@@ -27,7 +27,7 @@ export default function Tooltip({ text, children }: TooltipProps) {
           transition: "opacity 0.2s",
           pointerEvents: "none",
           maxWidth: 250,
-          whiteSpace: "normal" as any,
+          whiteSpace: "normal",
         }}
         className="tooltip-content"
       >

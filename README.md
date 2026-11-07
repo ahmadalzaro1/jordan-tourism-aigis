@@ -1,91 +1,89 @@
 # Jordan Tourism AI-GIS
 
-AI-Enabled Geo-Analytics Platform for Tourism Demand, Infrastructure Optimization, and Investment Prioritization in Jordan.
+A working map-based application for exploring tourism demand, accommodation capacity, and investment scenarios across Jordan's 12 governorates.
 
-## What This Is
+It combines a Next.js / MapLibre interface, a FastAPI / PostGIS backend, a Python SDK, and optional Superset datasets. The bundled visitor and occupancy series are **generated demo data**, not official MoTA observations. The project is not evidence of a ministry commission or deployment.
 
-An open-source analytics platform that integrates 55 data sources across 12 tiers to provide data-driven insights into Jordan's tourism sector. Built for the Ministry of Tourism and Antiquities (MoTA) / Ministry of Digital Economy and Entrepreneurship (MoDEE).
+## Verified behavior
 
-## Key Results
+The November 2026 validation exercised the application against a separate PostGIS database: **61 backend tests**, **30 original functional checks**, **3 frontend export tests**, a clean `npm ci`, type checks, lint, and a production build. Browser checks covered the map, year filters, layer switches, investment rankings, scenarios, research inventory, and CSV downloads. The browser file-upload check was declined; API importer tests passed before that decision.
 
-| Metric | Target (RFP) | Achieved |
-|--------|-------------|----------|
-| Forecast MAPE | ≤ 20% | **3.58%** |
-| Reproducibility | 100% | **100%** |
-| Data Sources | 3 | **55** |
-| Analytics Functions | 15+ | **70** |
+See [the validation report](docs/validation/2026-11-07-validation.md) for evidence, limitations, reproducible commands, and API improvements.
 
-## Architecture
+## Forecast results
 
+The original headline numbers refer to different Prophet settings on the same generated-data holdout. Both reproduce with Prophet 1.1.6 and CmdStanPy 1.2.5:
+
+| 2025 holdout, training through 2024 | MAPE |
+|---|---:|
+| Prophet, `changepoint_prior_scale=0.05` (application default) | 4.89% |
+| Prophet, `changepoint_prior_scale=0.01` (research comparison) | 3.58% |
+| Seasonal naive, repeat the preceding year | 5.80% |
+| ARIMA `(1,1,1)` | 26.50% |
+
+These measurements do not establish accuracy on real tourism data. API forecast metrics now use an earlier training period and unseen final months, rather than fitted-history errors. A Prophet failure is explicitly reported when ARIMA is used instead.
+
+## Data
+
+| Bundled core dataset | Rows | Kind |
+|---|---:|---|
+| Monthly visitors, 2020–2025 | 864 | Generated demo |
+| Monthly occupancy, 2020–2025 | 864 | Generated demo |
+| Hotel inventory | 22 | Demo inventory |
+| Tourism sites | 80 | Curated inventory |
+| Monthly site visits | 5,760 | Generated demo |
+| Cached governorate weather | 864 | Snapshot |
+| Cached economic indicators | 11 annual rows | Snapshot with missing values |
+
+`GET /api/sources` reports available core files and their provenance categories. Additional OSM and contextual CSVs are snapshots, estimates, or computed inputs; a file count is not a count of independent live sources. Seven provider classes are registered in the Python SDK.
+
+The map uses attributed geoBoundaries polygons under CC BY 2.5, representing 2006 boundaries. Nine site points and three hotel points require review against their assigned regions; see the report. Older GADM files remain historical inputs and are not used for the new map seeding.
+
+## Local development
+
+Requires Python 3.11, Node 22, and PostgreSQL with PostGIS. Keep this development application on localhost: write actions currently have no authentication or authorization layer.
+
+```sh
+python3.11 -m venv .venv
+.venv/bin/python -m pip install -r backend/requirements.txt
+# Set DATABASE_URL to your development PostGIS database before seeding.
+.venv/bin/python backend/scripts/setup_database.py
+PYTHONPATH=backend .venv/bin/python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
-Frontend (Next.js + MapLibre + shadcn/ui)    ← 22 React components
-    ↕
-Backend (FastAPI + PostgreSQL/PostGIS)        ← 28 Python modules
-    ↕
-Apache Superset                               ← BI dashboards
-    ↕
-55 Data Sources                               ← Tourism, weather, calendar, conflicts, economics
+
+In a second shell:
+
+```sh
+cd frontend
+npm ci
+npm run dev
 ```
 
-## Quick Start
+The default frontend API URL is `http://localhost:8000`; configure `NEXT_PUBLIC_API_URL` and backend `CORS_ORIGINS` together when choosing different ports. `TOURISM_DATA_DIR` can select an explicit shared dataset directory. Setup preserves bundled CSVs by default; `--generate-demo` explicitly regenerates them.
 
-```bash
-# Start all services
-docker-compose up -d
+For the Compose environment, review ports for conflicts first:
 
-# Seed database + create views
-cd backend && python3 scripts/setup_database.py
-
-# Access:
-# Dashboard:  http://localhost:3000
-# API:        http://localhost:8000/docs
-# Superset:   http://localhost:8088 (admin/admin)
+```sh
+docker compose up -d --build
+docker compose exec backend python scripts/setup_database.py
 ```
 
-## Data Sources (55 files, 12 tiers)
+Compose binds services to loopback. Superset now includes its PostgreSQL driver and runs its initialization script. Its metadata is separate from the tourism tables. Add the tourism database through a read-only role and register the provided SQL views; a fully authored BI dashboard is not bundled. Replace demo credentials and secret configuration before any production deployment.
 
-| Tier | Data | Records |
-|------|------|---------|
-| Tourism | Visitors, occupancy, sites, hotels | 7,680 |
-| OpenStreetMap | Hotels, restaurants, historic sites | 15,224 |
-| Weather | Temperature, rainfall × 12 governorates | 936 |
-| Calendar | Ramadan, Eid, public holidays | 108 |
-| Economics | GDP, inflation, unemployment, exchange rates | 70 |
-| Wikipedia | Page views for 7 tourism sites | 432 |
-| Aviation | Queen Alia airport passengers | 72 |
-| Conflicts | Regional conflict timeline | 21 events |
-| Markets | Source market vulnerability analysis | 12 markets |
-| Transport | Road accessibility scores | 12 governorates |
+## Tests and research
 
-## Analytics Functions (70)
+```sh
+.venv/bin/python -m pip install pytest==9.2.0 httpx==0.28.1
+PYTHONPATH=backend .venv/bin/python -m pytest backend/tests/test_forecasting_validation.py backend/tests/test_connectors.py
+PYTHONPATH=backend .venv/bin/python backend/scripts/functional_test.py
+PYTHONPATH=backend .venv/bin/python backend/scripts/backtest_forecast.py
+PYTHONPATH=backend .venv/bin/python backend/scripts/validate_benchmarks.py
+cd frontend
+npm test
+npm run lint
+npm run build
+```
 
-- **Indicators** (32): capacity, seasonality, elasticity, concentration, recovery, spillover
-- **Scoring** (14): priority investment, conflict resilience, ROI proxy
-- **Classification** (3): capacity classification (data-driven thresholds)
-- **Forecasting** (4): Prophet + ARIMA with autoresearch optimization
-- **Simulation** (2): accommodation and demand scenarios
-- **Data-Driven** (7): anomaly detection, trend analysis, confidence scoring
-- **Clusters** (6): tourism clusters (Petra, Wadi Rum, Aqaba, Dead Sea, Amman, Karak)
+Integration tests require `GIS_VALIDATION_DATABASE_URL` explicitly targeting the disposable database described in the validation report. They create workflow records; do not target an existing production database.
 
-## Key Findings
-
-1. **Hotel supply predicts demand** (r=+0.812) — build more hotels, tourists come
-2. **All governorates complement each other** (r=+0.82-0.90) — tourists visit multiple
-3. **Petra is 41% dependent on tourism** — extreme vulnerability
-4. **43% of tourism is conflict-vulnerable** — regional instability matters
-5. **Neighbor spillover**: Dead Sea→Amman (r=+0.546), Aqaba→Petra (r=+0.424)
-6. **GDP growth predicts next year tourism** (r=+0.841)
-7. **Summer drops recover in 10 months, winter drops in 3 months**
-
-## Forecast Performance
-
-| Configuration | MAPE |
-|--------------|------|
-| Prophet cps=0.01 (optimal) | **3.58%** |
-| Prophet cps=0.05 (default) | 4.89% |
-| ExpSmoothing (mul, mul) | 3.71% |
-| ARIMA (1,1,1) | 26.5% |
-
-## License
-
-MIT
+The module named `mcp/server.py` is a keyword query router over the SDK. It is not a standard MCP transport implementation or a general reasoning agent. Workflow notifications and automated forecast adjustments are planned hooks, not executed external actions.

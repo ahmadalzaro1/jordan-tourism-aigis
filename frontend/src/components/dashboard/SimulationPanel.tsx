@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { API_URL, THEME } from "@/lib/constants";
 
 interface SimulationPanelProps {
@@ -12,7 +12,7 @@ export default function SimulationPanel({ governorateId, governorateName }: Simu
   const [scenarioType, setScenarioType] = useState<"accommodation" | "demand">("accommodation");
   const [addedBeds, setAddedBeds] = useState(500);
   const [visitorChange, setVisitorChange] = useState(20);
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<{ baseline: Record<string, number | string>; scenario: Record<string, number | string>; difference: Record<string, { baseline: number; scenario: number; change: number } | string | boolean> } | null>(null);
   const [loading, setLoading] = useState(false);
 
   const runSim = async () => {
@@ -49,7 +49,7 @@ export default function SimulationPanel({ governorateId, governorateName }: Simu
         WHAT-IF SIMULATION
       </h2>
       <p style={{ fontSize: 12, color: THEME.textMuted, margin: "0 0 16px 0" }}>
-        {governorateName}
+        {governorateName || `Governorate ${governorateId}`} · Assumes 2.5 nights per visitor
       </p>
 
       {/* Scenario type selector */}
@@ -134,8 +134,8 @@ export default function SimulationPanel({ governorateId, governorateName }: Simu
             </thead>
             <tbody>
               {result.difference && Object.entries(result.difference)
-                .filter(([k]) => !k.startsWith("classification"))
-                .map(([key, val]: [string, any]) => (
+                .filter((entry): entry is [string, { baseline: number; scenario: number; change: number }] => typeof entry[1] === "object" && entry[1] !== null)
+                .map(([key, val]) => (
                   <tr key={key} style={{ borderBottom: `1px solid ${THEME.border}` }}>
                     <td style={{ padding: "6px 8px", fontSize: 11 }}>{key.replace(/_/g, " ")}</td>
                     <td style={{ padding: "6px 8px", textAlign: "right" }}>{val.baseline?.toFixed?.(2) ?? val.baseline}</td>
@@ -157,7 +157,7 @@ export default function SimulationPanel({ governorateId, governorateName }: Simu
               backgroundColor: "rgba(239,68,68,0.15)", border: "1px solid #ef4444",
               fontSize: 12, color: "#ef4444",
             }}>
-              Classification changed: {result.difference.classification_before} → {result.difference.classification_after}
+              Classification changed: {String(result.difference.classification_before)} → {String(result.difference.classification_after)}
             </div>
           )}
         </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import type { NationalSummary } from "@/lib/types";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { API_URL, THEME } from "@/lib/constants";
@@ -15,7 +16,7 @@ const ResearchPanel = dynamic(() => import("@/components/dashboard/ResearchPanel
 type Tab = "dashboard" | "simulation" | "investment" | "research" | "upload" | "export";
 
 export default function Home() {
-  const [summary, setSummary] = useState<any>(null);
+  const [summary, setSummary] = useState<NationalSummary | null>(null);
   const [selectedYear, setSelectedYear] = useState(2025);
   const [selectedGovId, setSelectedGovId] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<Tab>("dashboard");
@@ -41,9 +42,9 @@ export default function Home() {
   ];
 
   return (
-    <div style={{ display: "flex", height: "100vh", width: "100vw", overflow: "hidden" }}>
+    <div className="gis-shell" style={{ display: "flex", height: "100vh", width: "100vw", overflow: "hidden" }}>
       {/* Left Panel */}
-      <div style={{
+      <div className="gis-sidebar" style={{
         width: 420, height: "100vh", flexShrink: 0,
         backgroundColor: THEME.surface,
         borderRight: `1px solid ${THEME.border}`,
@@ -115,7 +116,7 @@ export default function Home() {
           {activeTab === "investment" && <InvestmentExplorer />}
           {activeTab === "research" && <ResearchPanel />}
           {activeTab === "upload" && <CSVUpload />}
-          {activeTab === "export" && <ExportPanel />}
+          {activeTab === "export" && <ExportPanel year={selectedYear} />}
         </div>
 
         {/* Footer */}
@@ -125,14 +126,14 @@ export default function Home() {
           fontSize: 9, color: THEME.textMuted,
           display: "flex", justifyContent: "space-between",
         }}>
-          <span>70 analytics functions</span>
-          <span>55 data sources</span>
-          <span>4.89% MAPE</span>
+          <span>Demo tourism data</span>
+          <span>Jordan · 12 governorates</span>
+          <span>Decision support</span>
         </div>
       </div>
 
       {/* Map */}
-      <div style={{ flex: 1, height: "100vh", position: "relative" }}>
+      <div className="gis-map" style={{ flex: 1, height: "100vh", position: "relative" }}>
         <MapViewer
           selectedGovId={selectedGovId}
           onGovSelect={(id) => {

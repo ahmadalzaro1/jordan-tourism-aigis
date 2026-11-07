@@ -262,7 +262,8 @@ def trigger_conflict_alert(
     return {
         "status": "alert_created",
         "event_id": event.id,
-        "triggers": ["notify_mota", "update_dashboard", "adjust_forecast"],
+        "planned_triggers": ["notify_mota", "update_dashboard", "adjust_forecast"],
+        "executed_triggers": [],
     }
 
 

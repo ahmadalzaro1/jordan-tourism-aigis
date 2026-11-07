@@ -26,7 +26,7 @@ async def upload_csv(
 
     os.makedirs(settings.etl_upload_dir, exist_ok=True)
     file_id = str(uuid.uuid4())[:8]
-    filepath = os.path.join(settings.etl_upload_dir, f"{file_id}_{file.filename}")
+    filepath = os.path.join(settings.etl_upload_dir, f"{file_id}.csv")
 
     content = await file.read()
     with open(filepath, "wb") as f:
@@ -56,6 +56,7 @@ async def upload_csv(
             "errors": result.get("errors", []),
         }
     except Exception as e:
+        db.rollback()
         log = ETLLog(
             filename=file.filename,
             dataset_type=dataset_type,
@@ -65,7 +66,7 @@ async def upload_csv(
         )
         db.add(log)
         db.commit()
-        raise HTTPException(500, f"ETL failed: {str(e)}")
+        raise HTTPException(400 if isinstance(e, ValueError) else 500, f"ETL failed: {str(e)}")
     finally:
         if os.path.exists(filepath):
             os.remove(filepath)

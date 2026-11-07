@@ -1,10 +1,15 @@
 {
-  "test_date": "2026-03-29T00:03:58.784551",
+  "test_date": "2026-11-06T21:34:37.862925",
   "tests": [
     {
-      "name": "ETL pipeline",
-      "status": "FAIL",
-      "details": "No module named 'sqlalchemy'"
+      "name": "ETL pipeline imports successfully",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "ETL CSV parsing works",
+      "status": "PASS",
+      "details": ""
     },
     {
       "name": "rooms_per_1000_visitors(100, 10000)",
@@ -148,8 +153,8 @@
     }
   ],
   "summary": {
-    "passed": 28,
-    "failed": 1,
-    "total": 29
+    "passed": 30,
+    "failed": 0,
+    "total": 30
   }
 }

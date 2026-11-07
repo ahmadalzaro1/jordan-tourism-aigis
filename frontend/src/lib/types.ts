@@ -32,16 +32,8 @@ export interface GovernorateSummary {
   } | null;
 }
 
-export interface GeoJSONFeature {
-  type: "Feature";
-  properties: Record<string, any>;
-  geometry: {
-    type: string;
-    coordinates: any;
-  };
-}
+export type GeoJSONFeature = import("geojson").Feature<import("geojson").Geometry, Record<string, string | number | null>>;
+export type GeoJSONCollection = import("geojson").FeatureCollection<import("geojson").Geometry, Record<string, string | number | null>>;
 
-export interface GeoJSONCollection {
-  type: "FeatureCollection";
-  features: GeoJSONFeature[];
-}
+export interface UploadResult { status: string; processed?: number; inserted?: number; skipped?: number; errored?: number; errors?: string[]; error?: string; detail?: string; }
+export interface Cluster { key: string; name_en: string; name_ar: string; description: string; }
