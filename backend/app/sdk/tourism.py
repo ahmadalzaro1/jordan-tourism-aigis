@@ -35,7 +35,11 @@ class VisitorsAPI:
         )
 
     def national(self, year: int = None) -> pd.DataFrame:
-        """Get national visitor totals."""
+        """National inbound visitor trips, at the source reporting geography."""
+        from app.official import official_mode, official_data
+        if official_mode():
+            rows=official_data()['national_monthly']
+            return pd.DataFrame([r for r in rows if year is None or r['year']==year])
         from app.providers.builtin import ProviderRegistry
 
         df = ProviderRegistry.get_data("mota", "visitors", year=year)
@@ -56,6 +60,19 @@ class VisitorsAPI:
         from app.providers.builtin import ProviderRegistry
 
         return ProviderRegistry.get_data("mota", "visitors", year=year)
+
+
+class OfficialAPI:
+    """Published national, site and accommodation observations with provenance."""
+    def overview(self, year=2025):
+        from app.official import overview
+        return overview(year)
+
+    def forecast(self, horizon=12):
+        if not 1 <= horizon <= 24:
+            raise ValueError("Forecast horizon must be between 1 and 24 months")
+        from app.api.routes.official import national_forecast
+        return national_forecast(horizon)
 
 
 class OccupancyAPI:
@@ -276,6 +293,7 @@ class TourismSDK:
     """
 
     def __init__(self):
+        self.official = OfficialAPI()
         self.visitors = VisitorsAPI(self)
         self.occupancy = OccupancyAPI(self)
         self.forecast = ForecastAPI(self)

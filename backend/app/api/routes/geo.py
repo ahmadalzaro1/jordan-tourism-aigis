@@ -1,4 +1,5 @@
 import json
+from app.official import official_mode
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import func
@@ -69,8 +70,8 @@ def get_hotels(governorate_id: int = None, db: Session = Depends(get_db)):
                     "name": r.name,
                     "hotel_class": r.hotel_class,
                     "governorate_id": r.governorate_id,
-                    "total_rooms": r.total_rooms,
-                    "total_beds": r.total_beds,
+                    "total_rooms": r.total_rooms if not official_mode() else None,
+                    "total_beds": r.total_beds if not official_mode() else None,
                 },
                 "geometry": geojson,
             }

@@ -20,6 +20,9 @@ class MoTAProvider(TourismProvider):
     )
 
     def _load(self, filename):
+        from app.official import official_mode
+        if official_mode():
+            raise ValueError("Demo provider disabled in official mode. Use app.official.overview for published national and reporting-region data.")
         path = os.path.join(DATA_DIR, "sample", filename)
         return pd.read_csv(path) if os.path.exists(path) else pd.DataFrame()
 

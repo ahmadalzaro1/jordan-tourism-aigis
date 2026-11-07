@@ -17,6 +17,10 @@ SOURCES = [
 
 @router.get("")
 def source_inventory():
+    from app.official import official_mode, official_data
+    if official_mode():
+        data=official_data()
+        return {"sources": data["sources"], "data_mode": "official", "definitions": data["definitions"], "source_issues": data["source_issues"]}
     items = []
     for name, relative, kind, url in SOURCES:
         path = DATA_DIR / relative

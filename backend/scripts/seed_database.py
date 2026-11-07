@@ -13,6 +13,7 @@ from sqlalchemy.orm import sessionmaker
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from app.paths import DATA_DIR
+from app.official import official_mode
 from app.db.database import Base
 from app.db.models import Governorate, TourismSite, Hotel
 from scripts.generate_sample_data import GOVERNORATES, HOTELS
@@ -104,6 +105,24 @@ def seed():
             db.add(h)
     db.commit()
     print(f"  {len(HOTELS)} hotels seeded")
+
+    # Apply reviewed fixes to existing records, not just newly inserted seeds.
+    for correction in json.loads((DATA_DIR/"geo/location-corrections.json").read_text()):
+        model, field = (TourismSite, TourismSite.name_en) if correction["kind"] == "site" else (Hotel, Hotel.name)
+        record = db.query(model).filter(field == correction["name"]).one()
+        record.governorate_id = govs[correction["governorate_code"]]
+        record.latitude, record.longitude = correction["latitude"], correction["longitude"]
+        record.geometry = None
+    db.commit()
+    if official_mode():
+        # Inventories remain locations; unverified facility capacities are never presented as official.
+        for hotel in db.query(Hotel):
+            hotel.total_rooms = None
+            hotel.total_beds = None
+        db.commit()
+        db.close()
+        print("Official mode: reviewed locations loaded; generated tourism counts are not seeded.")
+        return
 
     # Seed visitor and occupancy data from CSVs
     sample_dir = str(DATA_DIR / "sample")

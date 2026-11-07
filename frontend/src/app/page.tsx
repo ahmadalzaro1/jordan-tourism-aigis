@@ -15,7 +15,10 @@ const ResearchPanel = dynamic(() => import("@/components/dashboard/ResearchPanel
 
 type Tab = "dashboard" | "simulation" | "investment" | "research" | "upload" | "export";
 
-export default function Home() {
+const OfficialDashboard=dynamic(()=>import("@/components/dashboard/OfficialDashboard"),{ssr:false});
+export default function Home(){return process.env.NEXT_PUBLIC_DATA_MODE === "demo" ? <DemoHome/> : <OfficialDashboard/>;}
+
+function DemoHome() {
   const [summary, setSummary] = useState<NationalSummary | null>(null);
   const [selectedYear, setSelectedYear] = useState(2025);
   const [selectedGovId, setSelectedGovId] = useState<number | null>(null);

@@ -9,6 +9,7 @@ import { THEME, API_URL } from "@/lib/constants";
 import type { GeoJSONCollection } from "@/lib/types";
 
 interface MapViewerProps {
+  official?: boolean;
   selectedGovId: number | null;
   onGovSelect: (id: number | null) => void;
   selectedYear: number;
@@ -35,7 +36,7 @@ const HOTEL_STAR_COLOR: Record<string, string> = {
   "1-star": "#06b6d4",
 };
 
-export default function MapViewer({ selectedGovId, onGovSelect, selectedYear, showHeatmap = true, showPriorityZones = true, onToggleHeatmap, onTogglePriorityZones }: MapViewerProps) {
+export default function MapViewer({ official=false, selectedGovId, onGovSelect, selectedYear, showHeatmap = true, showPriorityZones = true, onToggleHeatmap, onTogglePriorityZones }: MapViewerProps) {
   const [governorates, setGovernorates] = useState<GeoJSONCollection | null>(null);
   const [hotels, setHotels] = useState<GeoJSONCollection | null>(null);
   const [sites, setSites] = useState<GeoJSONCollection | null>(null);
@@ -43,11 +44,12 @@ export default function MapViewer({ selectedGovId, onGovSelect, selectedYear, sh
   const [classifications, setClassifications] = useState<Record<string, string>>({});
 
   useEffect(() => {
+    if (official) return;
     fetch(`${API_URL}/api/analytics/compute-all?year=${selectedYear}`, {method: "POST"})
       .then(r => { if (!r.ok) throw new Error("Classification unavailable"); return r.json(); })
       .then(data => setClassifications(Object.fromEntries(data.results.map((r: {code: string; classification: string}) => [r.code, r.classification]))))
       .catch(console.error);
-  }, [selectedYear]);
+  }, [selectedYear, official]);
   const [showHotels, setShowHotels] = useState(true);
   const [showSites, setShowSites] = useState(true);
 
@@ -317,14 +319,14 @@ export default function MapViewer({ selectedGovId, onGovSelect, selectedYear, sh
           <input type="checkbox" checked={showSites} onChange={() => setShowSites(!showSites)} />
           <span style={{ color: "#3b82f6" }}>&#9679;</span> Tourism Sites
         </label>
-        <label style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", marginBottom: 6 }}>
+        {!official && <label style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", marginBottom: 6 }}>
           <input type="checkbox" checked={showHeatmap} onChange={onToggleHeatmap} />
           <span style={{ color: "#f59e0b" }}>&#9632;</span> Accommodation density
-        </label>
-        <label style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }}>
+        </label>}
+        {!official && <label style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }}>
           <input type="checkbox" checked={showPriorityZones} onChange={onTogglePriorityZones} />
           <span style={{ color: "#22c55e" }}>&#9679;</span> Priority Zones
-        </label>
+        </label>}
       </div>
 
       {/* Wordmark */}
@@ -337,7 +339,7 @@ export default function MapViewer({ selectedGovId, onGovSelect, selectedYear, sh
         letterSpacing: "0.15em",
         pointerEvents: "none",
       }}>
-        JORDAN TOURISM AI-GIS · Priority: red = under capacity, green = balanced, blue = surplus
+        {official ? "Reviewed place inventory · Official statistics retain their reporting geography" : "JORDAN TOURISM AI-GIS · Priority: red = under capacity, green = balanced, blue = surplus"}
       </div>
     </div>
   );

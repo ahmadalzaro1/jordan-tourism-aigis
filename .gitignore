@@ -39,3 +39,6 @@ data/osm/osm_historic_sites.csv
 frontend/public/maplibre-gl-worker.mjs
 backend/data/.cache/
 output/
+
+# Downloaded original publications are retained locally; normalized facts and source hashes are versioned.
+data/official/raw/

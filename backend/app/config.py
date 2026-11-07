@@ -1,10 +1,12 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from functools import lru_cache
+from typing import Literal
 
 
 class Settings(BaseSettings):
     app_name: str = "Jordan Tourism AI-GIS"
     debug: bool = True
+    data_mode: Literal["official", "demo"] = "official"
 
     # Database
     database_url: str = "postgresql://tourism:tourism@localhost:5433/tourism_gis"

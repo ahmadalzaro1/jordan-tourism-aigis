@@ -19,3 +19,7 @@ reportlab==4.4.0
 requests==2.32.5
 pyarrow==23.0.1
 chardet==5.2.0
+
+# Rebuilding the pinned official MoTA observations
+xlrd==2.0.2
+openpyxl==3.1.5

@@ -1,0 +1,114 @@
+[
+  {
+    "kind": "site",
+    "name": "Tell el-Hammam",
+    "governorate_code": "BAL",
+    "latitude": 31.83965,
+    "longitude": 35.67141,
+    "source_url": "https://tallelhammam.com/tehep-field-school-2022",
+    "verification": "Excavation project GPS location"
+  },
+  {
+    "kind": "site",
+    "name": "Qasr Azraq",
+    "governorate_code": "ZAR",
+    "latitude": 31.88066,
+    "longitude": 36.82735,
+    "source_url": "https://www.geonames.org/247604",
+    "verification": "GeoNames coordinate; Jordan Tourism Board places Azraq in Zarqa",
+    "attribution": "GeoNames, CC BY 4.0; https://www.geonames.org/about.html"
+  },
+  {
+    "kind": "site",
+    "name": "Qasr Burqu'",
+    "governorate_code": "MAF",
+    "latitude": 32.60667,
+    "longitude": 37.96638,
+    "source_url": "https://gazetteer.dainst.org/doc/2282926.html",
+    "verification": "German Archaeological Institute published coordinate"
+  },
+  {
+    "kind": "site",
+    "name": "Jawa",
+    "governorate_code": "MAF",
+    "latitude": 32.33507,
+    "longitude": 37.00181,
+    "source_url": "https://www.geonames.org/8643615",
+    "verification": "Gazetteer marker at the archaeological dam complex",
+    "attribution": "GeoNames, CC BY 4.0; https://www.geonames.org/about.html"
+  },
+  {
+    "kind": "site",
+    "name": "Wadi Mujib (Siq Trail)",
+    "governorate_code": "MAD",
+    "latitude": 31.46,
+    "longitude": 35.57,
+    "source_url": "https://www.rscn.org.jo/uploaded_files/reservation/Mujib%20Biosphere%20Reserve%20Trails%202026.pdf",
+    "verification": "Retained approximate trail marker; corrected administrative assignment, not the entire trans-governorate reserve"
+  },
+  {
+    "kind": "site",
+    "name": "Lot's Cave (Zoar)",
+    "governorate_code": "KAR",
+    "latitude": 31.046667,
+    "longitude": 35.503889,
+    "source_url": "https://www.juliainserro.com/blog/2015/11/06/lots-cave-a-really-low-museum",
+    "verification": "Firsthand published GPS 31°2′48″N 35°30′14″E; Karak corroborated by Jordan site inventory"
+  },
+  {
+    "kind": "site",
+    "name": "Umm ar-Rasas (Kastrom Mefa'a)",
+    "governorate_code": "AMM",
+    "latitude": 31.4995,
+    "longitude": 35.9198,
+    "source_url": "https://whc.unesco.org/document/167063",
+    "verification": "UNESCO management plan states Amman governorate and the castrum center coordinate"
+  },
+  {
+    "kind": "site",
+    "name": "Gharandal",
+    "governorate_code": "TAF",
+    "latitude": 30.71535,
+    "longitude": 35.65895,
+    "source_url": "https://www.geonames.org/249441",
+    "verification": "Arindela in Tafilah; distinguished from Ayn Gharandal in Aqaba by DoA 1998/1999 field reports",
+    "attribution": "GeoNames, CC BY 4.0; https://www.geonames.org/about.html"
+  },
+  {
+    "kind": "site",
+    "name": "Humayma (Hawara)",
+    "governorate_code": "AQAB",
+    "latitude": 29.98,
+    "longitude": 35.32,
+    "source_url": "https://publications.acorjordan.org/2019/07/22/piecing-together-the-wall-paintings-from-humayma/",
+    "verification": "Retained approximate Hisma-area marker; corrected administrative assignment to Aqaba"
+  },
+  {
+    "kind": "hotel",
+    "name": "Kempinski Ishtar Dead Sea",
+    "governorate_code": "BAL",
+    "latitude": 31.71558139479235,
+    "longitude": 35.58613581017084,
+    "source_url": "https://www.kempinski.com/en/hotel-ishtar/overview/hotel-information/location",
+    "verification": "Hotel-published GPS"
+  },
+  {
+    "kind": "hotel",
+    "name": "Hilton Dead Sea",
+    "governorate_code": "BAL",
+    "latitude": 31.72188,
+    "longitude": 35.58745,
+    "source_url": "https://www.geonames.org/10247070",
+    "verification": "GeoNames property coordinate; identity/location corroborated by Hilton official location page",
+    "attribution": "GeoNames, CC BY 4.0; https://www.geonames.org/about.html"
+  },
+  {
+    "kind": "hotel",
+    "name": "Movenpick Dead Sea",
+    "governorate_code": "BAL",
+    "latitude": 31.71733,
+    "longitude": 35.586136,
+    "source_url": "https://movenpick.accor.com/en/hotels/dead-sea/B4P9.html",
+    "verification": "Hotel-published structured GeoCoordinates"
+  }
+]
